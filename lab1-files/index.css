@@ -1,0 +1,115 @@
+/* Feel free to edit CSS of body if you'd like. We provide you the light gray background color and font family in the body styling */
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 0;
+  background-color: #e6ecf0;
+}
+
+nav {
+  background-color: grey;
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  top: 0%;
+
+  display: flex;
+  list-style:none;
+}
+
+nav li {
+  margin: 5px;
+}
+
+#wrapper {
+  background-color: aqauamarine;
+  display: flex;
+  margin-top:100px;
+  max-width:1190px;
+  margin: 56px auto;
+}
+
+#content-left {
+  height: 200px;
+  width: 100%;
+  background-color: blue;
+}
+
+#content-center {
+  height: 600px;
+  width: 100%;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+
+  padding:50px;
+  margin:10px;
+}
+
+#content-right {
+  height: 200px;
+  width: 100%;
+  background-color: blue;
+}
+
+#profile-picture {
+  height: 75px;
+  width: 75px;
+  position:relative;
+  background-color: green;
+  border-radius: 50%;
+  border: 2px solid white;
+  left: 10%;
+  top: -10px;
+}
+
+#cover {
+  background-color: black;
+  width: 100%;
+  padding: 20px;
+  z-index:0; 
+}
+
+#cover-picture{
+  background-color: white;
+}
+
+#twitter-handle {
+  position: relative;
+  left: 15%;
+  top: -20px;
+  font-size: 20px;
+  text-decoration: underline;
+}
+
+.topheader {
+  position:fixed;
+  top:0;
+  left:0; 
+  z-index:100;
+}
+
+.twitterlogo {
+  position:absolute;
+  display:block;
+  left:50%;
+  margin-left:-15px;
+}
+
+.tweetbutton {
+  background-color: rgb(29, 155, 240);
+  display:block;
+  position:absolute;
+  margin-left:-60px;
+  left:100%;
+  
+}
+
+@media (max-width: 1200px) {
+  #content-right {
+    display:none;
+  }
+}
+
+
+
+/* TODO: Create CSS for your Twitter Mockup */
