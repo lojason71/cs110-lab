@@ -1,10 +1,9 @@
 <!-- Jason Lo and Nathan Kong -->
 
-
 <!DOCTYPE html>
-<html>
+<html lang = "en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="index.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -12,7 +11,7 @@
   </head>
   <body>
     <!-- TODO: Create HTML elements for Twitter mockup inside body -->
-    <div class = "topheader">  <!-- TWITTER HEADER -->
+    <div class = "topheader" role = "navigation">  <!-- TWITTER HEADER -->
       <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContents" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -23,39 +22,88 @@
                 <a class="nav-item nav-link" href="#">Moments</a>
                 <a class="nav-item nav-link" href="#">Notifications</a>
                 <a class="nav-item nav-link" href="#">Messages</a>
-                <img src="./images/twitter-logo.png" width="30  " height="30" class="twitterlogo" alt="">
-                <button class="tweetbutton" width="30" height="30"> Tweet </button>
+                <a href = "#content-center" id="skiplink" >skip to center</a>  
+                <img src="./images/twitter-logo.png" width="30" height="30" class="twitterlogo" alt="bird twitter logo">
+                <button class="tweetbutton"> Tweet </button>
             </div>
         </div>
       </nav>
     </div>
-    
-    <div id = "wrapper">
+    <div class="page">
+    <div id = "wrapper" role = "main">
       <div id="content-left">
         <div id="cover-picture"> 
-          <img src="./images/ratatouille-banner.png" id = "cover" >
-          <img src="./images/ratatouille.jpg"  id="profile-picture">
+          <img src="./images/ratatouille-banner.png" id = "cover" alt = "ratatouille banner">
+          <img src="./images/ratatouille.jpg"  id="profile-picture" alt = "ratatouille mouse image">
           <b id="twitter-handle">  Remy  </b> 
-          <a> @remy </a>
+          <a id = "handle-color"> @remy </a>
         </div>
-        <div id="profile-stats"> profile stats</div>
-
+          <div id= "profile-stats-wrapper">
+            <div id="profile-stats"> 
+                <b> Tweets </b>
+                <b> Following </b>
+                <b> Followers </b>
+            </div>
+            <div id="profile-stats-numbers"> 
+                <b> 5049 </b>
+                <b> 324 </b>
+                <b> 809 </b>
+            </div>
+            <p>&nbsp;</p>       
+        </div> 
       </div>
 
       <div id="content-center">
-          <div class="tweet"> tweet</div>
-          <div class="tweet"> tweet</div>
-          <div class="tweet"> tweet</div>
-          <div class="tweet"> tweet</div>
-          <div class="tweet"> tweet</div>
-          <div class="tweet"> tweet</div>
+        <div class="full-tweet">
+          <img src="./images/ratatouille.jpg"  class="profile-picture-tweets" alt = "ratatouille mouse image">
+          <b class="twitter-handle-tweet">  Remy  </b>
+          <a class = "twitter-handle-tweet-date"> @remy Nov 19</a>
+          <div class="tweet"> I'm taking this class called CS 110 and the TAs are all so <b>cool</b>!</div>
+        </div>
+        <div class="full-tweet">
+          <img src="./images/ratatouille.jpg"  class="profile-picture-tweets" alt = "ratatouille mouse image">
+          <b class="twitter-handle-tweet">  Remy  </b> 
+          <a class = "twitter-handle-tweet-date"> @remy Nov 19</a>  
+          <div class="tweet"> It's 2007. You just home from elementary school. Your mom has pizza bagels in the oven. Ratatouille is in theaters. Life is good</div>
+        </div>
+        <div class="full-tweet">
+          <img src="./images/ratatouille.jpg"  class="profile-picture-tweets" alt = "ratatouille mouse image">
+          <b class="twitter-handle-tweet">  Remy  </b> 
+          <a class = "twitter-handle-tweet-date"> @remy Nov 19</a>
+          <div class="tweet"> Let's make some pasta!</div>
+        </div>
+        <div class="full-tweet">
+          <img src="./images/ratatouille.jpg"  class="profile-picture-tweets" alt = "ratatouille mouse image">
+          <b class="twitter-handle-tweet">  Remy  </b> 
+          <a class = "twitter-handle-tweet-date"> @remy Nov 19</a>
+          <div class="tweet"> Let's make some pasta!</div>
+        </div>
+        <div class="full-tweet">
+          <img src="./images/ratatouille.jpg"  class="profile-picture-tweets" alt = "ratatouille mouse image">
+          <b class  ="twitter-handle-tweet">  Remy  </b> 
+          <a class = "twitter-handle-tweet-date"> @remy Nov 19</a>
+          <div class="tweet"> Let's make some pasta!</div>
+        </div>
       </div>
 
       <div id="content-right">
-
+        <p></p>
+        <b id = "followtext"> Who to follow </b>
+        <div class = "follow">
+          <img src = "./images/linguini.png" id="follow-picture-linguini" alt = "linguini character image"> 
+          <b class = "follow-name"> Linguini</b>
+          <a class = "follow-handle"> @linguini</a>
+          <button class = "followbutton"> Follow </button>
+        </div>
+        <div class ="follow"> 
+          <img src = "./images/ratatouille.jpg" id="follow-picture-ta" alt = "ratatouille mouse image"> 
+          <b class="follow-name"> CS 110 TA</b>
+          <a class = "follow-handle"> @cs</a>
+          <button class = "followbutton"> Follow </button>
+        </div>
       </div>
-
     </div>
+  </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>  
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
