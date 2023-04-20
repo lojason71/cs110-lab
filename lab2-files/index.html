@@ -10,9 +10,10 @@
   <body>
 
     <h1>Tic Tac Toe</h1>
-    <h2>Its your turn, <span class="display_player"></span>.</h2>
-
-    <div class="game_board">
+    <h2 id = "turn" style="text-align: center;">Its your turn, <span class="display_player"></span>.</h2>
+    <h2 id = "winner" style="text-align: center;"></h2>
+    
+    <div id="game_board">
       <div class='row'>
         <div id="one"><span class="xo"></span></div>
         <div id="two"><span class="xo"></span></div>
@@ -30,8 +31,8 @@
       </div>
     </div>
 
-    <button class="new_game">New Game</button>
-    <button class="reset">Reset</button>
+    <button class="new_game" id = "new_game">New Game</button>
+    <button class="reset" id = "reset">Reset</button>
   </body>
 
   <script src="main.js"></script>
