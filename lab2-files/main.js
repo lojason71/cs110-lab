@@ -9,8 +9,15 @@ const bottomcenter = document.getElementById("eight");
 const bottomright = document.getElementById("nine");
 const gameboard = document.getElementById("game_board");
 const winner = document.getElementById("winner") ;
-document.getElementById("turn").innerHTML = "Its your turn, X";
+const player1score = document.getElementById("player1_score");
+const player2score = document.getElementById("player2_score");
 
+document.getElementById("turn").innerHTML = "Its your turn, X";
+player1score.innerHTML = "0";
+player2score.innerHTML = "0";
+
+let player1 = 0;
+let player2 = 0;
 let turn = 0;
 let arr = [[""]];
 
@@ -108,53 +115,33 @@ bottomright.addEventListener("click",function() {
     clickTile(bottomright);
 });
 
-// gameboard.addEventListener("click", function()  {
-//     let countXrow = 0;
-//     let countOrow = 0;
-//     let countXcol = 0;
-//     let countOcol = 0;
-//     let countXdiag = 0;
-//     let countOdiag = 0;
-//     for(let i = 0; i < 3; i++) {
-//         for(let j = 0; j < 3; j++) {
-//             //Rows
-//             if(arr[i][j] == 'X') {
-//                 countXcol += 1;
-//             }
-//             else if(arr[i][j] == 'O') {
-//                 countOcol += 1;
-//             }
-//         }
-//         //Columns
-//         if(arr[i][0] == 'X') {
-//             countXrow += 1;
-//         }
-//         else if(arr[i][0] == 'O') {
-//             countOrow += 1;
-//         }
-//     }
-//     if(countXrow == 3 || countXcol == 3 || countXdiag == 3) {
-//         winner.innerHTML = "Player 1 is the winner";
-//     }
-//     else if(countOrow == 3 || countOcol == 3 || countOdiag == 3) {
-//         winner.innerHTML = "Player 2 is the winner";
-//     }
-// });
 function checkWin() {
     for (let i = 0; i < 3; i++) {
       if (arr[i][0] !== "" && arr[i][0] === arr[i][1] && arr[i][1] === arr[i][2]) {
         winner.innerHTML = "Player " + arr[i][0] +  " is the winner";
+        if(arr[i][0] == 'X') { player1 += 1; player1score.innerHTML = player1; }
+        else { player2 += 1; player2score.innerHTML = player2; }
+        return;
     }
     for (let j = 0; j < 3; j++) {
       if (arr[0][j] !== "" && arr[0][j] === arr[1][j] && arr[1][j] === arr[2][j]) {
         winner.innerHTML = "Player " + arr[0][j] +  " is the winner";
+        if(arr[0][j] == 'X') { player1 += 1; player1score.innerHTML = player1; }
+        else { player2 += 1; player2score.innerHTML = player2; }
+        return;
       }
     }
     if (arr[0][0] !== "" && arr[0][0] === arr[1][1] && arr[1][1] === arr[2][2]) {
         winner.innerHTML = "Player " + arr[0][0] +  " is the winner";
+        if(arr[0][0] == 'X') { player1 += 1; player1score.innerHTML = player1; }
+        else { player2 += 1; player2score.innerHTML = player2; }
+        return;
     }
     if (arr[0][2] !== "" && arr[0][2] === arr[1][1] && arr[1][1] === arr[2][0]) {
         winner.innerHTML = "Player " + arr[0][2] +  " is the winner";
+        if(arr[0][2] == 'X') { player1 += 1; player1score.innerHTML = player1; }
+        else { player2 += 1; player2score.innerHTML = player2; }
+        return;
     }
     winner.innerHTNL = "No Winners";
   }
@@ -194,7 +181,10 @@ document.getElementById("reset").addEventListener("click",function(){
             arr[i][j] = "";
         }
     }
-    /*Reset Score*/
+    player1 = 0;
+    player2 = 0;
+    player1score.innerHTML = player1;
+    player2score.innerHTML = player2;
 });
 
 document.getElementById("new_game").addEventListener("click",function(){
