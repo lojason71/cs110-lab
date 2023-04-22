@@ -15,18 +15,18 @@ h1 {
     font-size: 1.5em;
 }
 /* Button: NewGame and Reset */
-.new_game, .reset {
+.new_game, .reset, .playwithai, .selecttwoplayer{
     text-align:center;
     background-color: #ff8c00;
     color: #000000;
-    font-size: 24px;
+    font-size: 18px;
     padding: 12px 28px;
     border-radius: 12px;
     border: 1px solid gray;
     display: block;
     margin: 20px auto;
 }
-.new_game:hover, .reset {
+.new_game:hover, .reset:hover, .playwithai:hover, .selecttwoplayer:hover {
     background-color: orange;
 }
 #game_board {

@@ -1,29 +1,50 @@
-const topleft = document.getElementById("one");
-const topcenter = document.getElementById("two");
-const topright = document.getElementById("three");
-const middleleft = document.getElementById("four");
-const middlecenter = document.getElementById("five");
-const middleright = document.getElementById("six");
-const bottomleft = document.getElementById("seven");
-const bottomcenter = document.getElementById("eight");
-const bottomright = document.getElementById("nine");
+const controller = new AbortController();
+const signal = controller.signal;
+
+// class playerMoves {
+//     constructor() {
+//         this.moveNum = 0;
+//         this.moveX = [];
+//         this.moveY = [];
+//     }
+    
+//     addmove(x, y) {
+//         moveX.push(x);
+//         moveY.push(y);
+//         moveNum+=1;
+//     }
+// }
+
+let topleft = document.getElementById("one");
+let topcenter = document.getElementById("two");
+let topright = document.getElementById("three");
+let middleleft = document.getElementById("four");
+let middlecenter = document.getElementById("five");
+let middleright = document.getElementById("six");
+let bottomleft = document.getElementById("seven");
+let bottomcenter = document.getElementById("eight");
+let bottomright = document.getElementById("nine");
 const gameboard = document.getElementById("game_board");
 const winner = document.getElementById("winner") ;
 const player1score = document.getElementById("player1_score");
 const player2score = document.getElementById("player2_score");
+const displayturn = document.getElementById("turn");
+const playwithai = document.getElementById("playwithai");
+const selecttwoplayer = document.getElementById("selecttwoplayer");
 
-document.getElementById("turn").innerHTML = "Its your turn, X";
+displayturn.innerHTML = "Its your turn, X";
 player1score.innerHTML = "0";
 player2score.innerHTML = "0";
 
+let time;
+
+let playai = false;
 let player1 = 0;
 let player2 = 0;
 let turn = 0;
-let arr = [[""]];
-
-// for(let i = 0; i < 3; i++) {
-//     arr[i] = [""];
-// }
+var arr = [[""]];
+// let player1moves = new playerMoves();
+// let player2moves = new playerMoves();
 
 for (let i = 0; i < 3; i++){
     arr[i] = new Array(3);
@@ -32,131 +53,226 @@ for (let i = 0; i < 3; i++){
     }
 }
 
-topleft.addEventListener("click", function() {
-    if(turn % 2 == 0) {
-        arr[0][0] = 'X';
-    }
-    else {
-        arr[0][0] = 'O';
-    }
-    clickTile(topleft)
-    // topleft.removeEventListener("click", onClick());
-}); 
-topcenter.addEventListener("click",function() {
-    if(turn % 2 == 0) {
-        arr[0][1] = 'X';
-    }
-    else {
-        arr[0][1] = 'O';
-    }
-    clickTile(topcenter);
-});
-topright.addEventListener("click",function() {
-    if(turn % 2 == 0) {
-        arr[0][2] = 'X';
-    }
-    else {
-        arr[0][2] = 'O';
-    }
-    clickTile(topright);
-});
-middleleft.addEventListener("click",function() {
-    if(turn % 2 == 0) {
-        arr[1][0] = 'X';
-    }
-    else {
-        arr[1][0] = 'O';
-    }
-    clickTile(middleleft);
-});
-middlecenter.addEventListener("click",function() {
-    if(turn % 2 == 0) {
-        arr[1][1] = 'X';
-    }
-    else {
-        arr[1][1] = 'O';
-    }
-    clickTile(middlecenter);
-});
-middleright.addEventListener("click",function() {
-    if(turn % 2 == 0) {
-        arr[1][2] = 'X';
-    }
-    else {
-        arr[1][2] = 'O';
-    }
-    clickTile(middleright);
-});
-bottomleft.addEventListener("click",function() {
-    if(turn % 2 == 0) {
-        arr[2][0] = 'X';
-    }
-    else {
-        arr[2][0] = 'O';
-    }
-    clickTile(bottomleft);
-});
-bottomcenter.addEventListener("click",function() {
-    if(turn % 2 == 0) {
-        arr[2][1] = 'X';
-    }
-    else {
-        arr[2][1] = 'O';
-    }
-    clickTile(bottomcenter);
-});
-bottomright.addEventListener("click",function() {
-    if(turn % 2 == 0) {
-        arr[2][2] = 'X';
-    }
-    else {
-        arr[2][2] = 'O';
-    }
-    clickTile(bottomright);
-});
+playwithai.addEventListener("click" , function(){ playai = true; console.log("Play With AI Enabled")});
+selecttwoplayer.addEventListener("click" , function(){ playai = false; console.log("Player With Two Players Enabled");});
+
+function addListeners () {
+    topleft = document.getElementById("one");
+    topcenter = document.getElementById("two");
+    topright = document.getElementById("three");
+    middleleft = document.getElementById("four");
+    middlecenter = document.getElementById("five");
+    middleright = document.getElementById("six");
+    bottomleft = document.getElementById("seven");
+    bottomcenter = document.getElementById("eight");
+    bottomright = document.getElementById("nine");    
+    topleft.addEventListener("click", function onClick() {clickTile(topleft)}, {once: true});
+    topcenter.addEventListener("click", function onClick() {clickTile(topcenter)}, {once: true});
+    topright.addEventListener("click", function onClick() {clickTile(topright)}, {once: true});
+    middleleft.addEventListener("click", function onClick() {clickTile(middleleft)}, {once: true});    
+    middlecenter.addEventListener("click", function onClick() {clickTile(middlecenter)}, {once: true});
+    middleright.addEventListener("click", function onClick() {clickTile(middleright)}, {once: true});
+    bottomleft.addEventListener("click", function onClick() {clickTile(bottomleft)}, {once: true});
+    bottomcenter.addEventListener("click", function onClick() {clickTile(bottomcenter)}, {once: true});
+    bottomright.addEventListener("click", function onClick() {clickTile(bottomright)}, {once: true});
+}
+
+addListeners();
+
+function removeListeners () {
+    topleft.replaceWith(topleft.cloneNode(true));
+    topcenter.replaceWith(topcenter.cloneNode(true));
+    topright.replaceWith(topright.cloneNode(true));
+    middleleft.replaceWith(middleleft.cloneNode(true));
+    middlecenter.replaceWith(middlecenter.cloneNode(true));
+    middleright.replaceWith(middleright.cloneNode(true));
+    bottomleft.replaceWith(bottomleft.cloneNode(true));
+    bottomcenter.replaceWith(bottomcenter.cloneNode(true));
+    bottomright.replaceWith(bottomright.cloneNode(true));    
+}
 
 function checkWin() {
     for (let i = 0; i < 3; i++) {
       if (arr[i][0] !== "" && arr[i][0] === arr[i][1] && arr[i][1] === arr[i][2]) {
         winner.innerHTML = "Player " + arr[i][0] +  " is the winner";
+        displayturn.innerHTML = "";
         if(arr[i][0] == 'X') { player1 += 1; player1score.innerHTML = player1; }
         else { player2 += 1; player2score.innerHTML = player2; }
+        removeListeners();
+        clearInterval(countdown);
+        // clearInterval(timerPlayer);
+        clearTimeout(time);
+        document.getElementById("playertimer").innerHTML = "";
+        document.getElementById("timer").innerHTML = "";
         return;
     }
     for (let j = 0; j < 3; j++) {
       if (arr[0][j] !== "" && arr[0][j] === arr[1][j] && arr[1][j] === arr[2][j]) {
         winner.innerHTML = "Player " + arr[0][j] +  " is the winner";
+        displayturn.innerHTML = "";
         if(arr[0][j] == 'X') { player1 += 1; player1score.innerHTML = player1; }
         else { player2 += 1; player2score.innerHTML = player2; }
+        removeListeners();
+        clearInterval(countdown);
+        // clearInterval(timerPlayer);
+        clearTimeout(time);
+        document.getElementById("playertimer").innerHTML = "";
+        document.getElementById("timer").innerHTML = "";
         return;
       }
     }
     if (arr[0][0] !== "" && arr[0][0] === arr[1][1] && arr[1][1] === arr[2][2]) {
         winner.innerHTML = "Player " + arr[0][0] +  " is the winner";
+        displayturn.innerHTML = "";
         if(arr[0][0] == 'X') { player1 += 1; player1score.innerHTML = player1; }
         else { player2 += 1; player2score.innerHTML = player2; }
+        removeListeners();
+        clearInterval(countdown);
+        // clearInterval(timerPlayer);
+        clearTimeout(time);
+        document.getElementById("playertimer").innerHTML = "";
+        document.getElementById("timer").innerHTML = "";
         return;
     }
     if (arr[0][2] !== "" && arr[0][2] === arr[1][1] && arr[1][1] === arr[2][0]) {
         winner.innerHTML = "Player " + arr[0][2] +  " is the winner";
+        displayturn.innerHTML = "";
         if(arr[0][2] == 'X') { player1 += 1; player1score.innerHTML = player1; }
         else { player2 += 1; player2score.innerHTML = player2; }
+        removeListeners();
+        clearInterval(countdown);
+        // clearInterval(timerPlayer);
+        clearTimeout(time);
+        document.getElementById("playertimer").innerHTML = "";
+        document.getElementById("timer").innerHTML = "";
         return;
     }
-    winner.innerHTNL = "No Winners";
   }
 }
 
+// var fifteenSeconds = new Date().getTime() + 15000;
+
+// var playertime = (function() {
+//         timerPlayer = setInterval(function() {
+//             var nows = new Date().getTime();
+//             var remainings = Math.floor((fifteenSeconds-nows)/1000);
+//             document.getElementById("playertimer").innerHTML = "Player time remaining: " + Math.floor(remainings/60) + ":" + remainings%60;
+//             if (remainings <=0) {
+//                 clearInterval(timerPlayer);
+//                 //Next Player
+//             }
+//         }, 1000);   
+// });
+
+
+function startPlayerTimer(){
+    var nows = Date.now();
+    time = setTimeout(() => {
+        turn+=1;
+    }, 15000);
+
+    function printPlayerTime(){
+        var remainings = Math.ceil((nows + 15000 - Date.now())/1000);
+        if (remainings > 0){
+            document.getElementById("playertimer").innerHTML = "Player time remaining: " + remainings   ;
+        }
+        else{
+            document.getElementById("playertimer").innerHTML = "";
+        }
+        if (remainings > 0){
+            setTimeout(printPlayerTime,1000);
+        }
+    }
+printPlayerTime();
+}
+
+startPlayerTimer();
+
+
+var twoMinutes = new Date().getTime() + 120000;
+
+var firstclick = (function(){
+    var click = false;
+    return function() {
+        if (!click){
+            click = true;
+            countdown = setInterval(function() {
+                var now = new Date().getTime();
+                var remaining = Math.floor((twoMinutes-now)/1000);
+                document.getElementById("timer").innerHTML = "Total time remaining: " + Math.floor(remaining/60) + ":" + remaining%60;
+                if (remaining <=0) {
+                    clearInterval(countdown);
+                    removeListeners();
+                    winner.innerHTML = "It's a Tie!";
+                }
+            }, 1000);
+        }
+    };
+})();
+
+
 function clickTile(temp){
+    let i = 0;
+    let j = 0;
+    
+    firstclick();
+    
+    if(temp == topleft) {        
+        if(turn % 2 == 0) { arr[0][0] = 'X'; player1moves.addmove(0,0);}
+        else { arr[0][0] = 'O'; player2moves.addmove(0,0);}
+        
+    }
+    else if(temp == topcenter) {        
+        if(turn % 2 == 0) { arr[0][1] = 'X';  player1moves.addmove(0,1);}
+        else { arr[0][1] = 'O'; player2moves.addmove(0,1);}
+    }
+    else if(temp == topright) {        
+        if(turn % 2 == 0) { arr[0][2] = 'X'; player1moves.addmove(0,2);}
+        else { arr[0][2] = 'O'; player2moves.addmove(0,2);}
+    }
+    else if(temp == middleleft) {        
+        if(turn % 2 == 0) { arr[1][0] = 'X'; player1moves.addmove(1,0);}
+        else { arr[1][0] = 'O'; player2moves.addmove(1,0);}
+    }
+    else if(temp == middlecenter) {        
+        if(turn % 2 == 0) { arr[1][1] = 'X'; player1moves.addmove(1,1);}
+        else { arr[1][1] = 'O'; player2moves.addmove(1,1);}
+    }
+    else if(temp == middleright) {        
+        if(turn % 2 == 0) { arr[1][2] = 'X'; player1moves.addmove(1,2);}
+        else { arr[1][2] = 'O'; player2moves.addmove(1,2);}
+    }
+    else if(temp == bottomleft) {        
+        if(turn % 2 == 0) { arr[2][0] = 'X'; player1moves.addmove(2,0);}
+        else { arr[2][0] = 'O'; player2moves.addmove(2,0);}
+    }
+    else if(temp == bottomcenter) {        
+        if(turn % 2 == 0) { arr[2][1] = 'X'; player1moves.addmove(2,1);}
+        else {arr[2][1] = 'O'; player2moves.addmove(2,1);}
+    }
+    else if(temp == bottomright) {        
+        if(turn % 2 == 0) { arr[2][2] = 'X'; player1moves.addmove(2,2);}
+        else {arr[2][2] = 'O'; player2moves.addmove(2,2);}
+    }
+
     console.log(arr);
+    // if (turn > 0){
+    //     clearInterval(timerPlayer);
+    // }
     if(turn % 2 == 0) {
+        // playertime();
+        clearTimeout(time);
+        startPlayerTimer();
         temp.getElementsByClassName("xo")[0].innerHTML = "X";
-        document.getElementById("turn").innerHTML = "Its your turn, O";
+        displayturn.innerHTML = "Its your turn, O";
         checkWin();
     }
     else{ 
+        // playertime();
+        clearTimeout(time);
+        startPlayerTimer();
         temp.getElementsByClassName("xo")[0].innerHTML = "O";
-        document.getElementById("turn").innerHTML = "Its your turn, X";
+        displayturn.innerHTML = "Its your turn, X";
         checkWin();
     }
     turn+=1;
@@ -172,7 +288,7 @@ document.getElementById("reset").addEventListener("click",function(){
     document.getElementById("seven").getElementsByClassName("xo")[0].innerHTML = "";
     document.getElementById("eight").getElementsByClassName("xo")[0].innerHTML = "";
     document.getElementById("nine").getElementsByClassName("xo")[0].innerHTML = "";
-    document.getElementById("turn").innerHTML = "Its your turn, X";
+    displayturn.innerHTML = "Its your turn, X";
     turn = 0;
     winner.innerHTML = "";
     for (let i = 0; i < 3; i++){
@@ -185,6 +301,12 @@ document.getElementById("reset").addEventListener("click",function(){
     player2 = 0;
     player1score.innerHTML = player1;
     player2score.innerHTML = player2;
+    clearInterval(countdown);
+    // clearInterval(timerPlayer);
+    clearTimeout(time);
+    document.getElementById("playertimer").innerHTML = "";
+    document.getElementById("timer").innerHTML = "";
+    addListeners();
 });
 
 document.getElementById("new_game").addEventListener("click",function(){
@@ -197,7 +319,7 @@ document.getElementById("new_game").addEventListener("click",function(){
     document.getElementById("seven").getElementsByClassName("xo")[0].innerHTML = "";
     document.getElementById("eight").getElementsByClassName("xo")[0].innerHTML = "";
     document.getElementById("nine").getElementsByClassName("xo")[0].innerHTML = "";
-    document.getElementById("turn").innerHTML = "Its your turn, X";
+    displayturn.innerHTML = "Its your turn, X";
     turn = 0;
     winner.innerHTML = "";
     for (let i = 0; i < 3; i++){
@@ -206,4 +328,78 @@ document.getElementById("new_game").addEventListener("click",function(){
             arr[i][j] = "";
         }
     }
+    clearInterval(countdown);
+    // clearInterval(timerPlayer);
+    clearTimeout(time);
+    document.getElementById("playertimer").innerHTML = "";
+    document.getElementById("timer").innerHTML = "";
+    addListeners();
 });
+
+setInterval( () => {
+    // if(player1moves.turn % 5 == 0) {
+    //     player1moves.popfront();
+    //     player1moves.popfront();
+    // }
+    // if(player2moves.turn % 5 == 0) {
+    //     player2moves.moveX.shift();
+    //     player2moves.moveY.shift();
+    // }
+    if(playai == true) {
+        if(turn % 2 == 1) {
+            for(let i = 0; i < 3; i++) {
+                let tempflag = false;
+                for(let j = 0; j < 3; j++) {
+                    if(arr[i][j] == '') {
+                        if(i == 0 && j == 0) {
+                            topleft.click();
+                            tempflag = true;
+                            break;
+                        }
+                        else if(i == 1 && j == 0) {
+                            middleleft.click();
+                            tempflag = true;
+                            break;
+                        }
+                        else if(i == 2 && j == 0) {
+                            bottomleft.click();
+                            tempflag = true;
+                            break;
+                        }
+                        else if(i == 0 && j == 1) {
+                            topcenter.click();
+                            tempflag = true;
+                            break;
+                        }
+                        else if(i == 1 && j == 1) {
+                            middlecenter.click();
+                            tempflag = true;
+                            break;
+                        }                    
+                        else if(i == 2 && j == 1) {
+                            bottomcenter.click();
+                            tempflag = true;
+                            break;
+                        }
+                        else if(i == 0 && j == 2) {
+                            topright.click();
+                            tempflag = true;
+                            break;
+                        }
+                        else if(i == 1 && j == 2) {
+                            middleright.click();
+                            tempflag = true;
+                            break;
+                        }
+                        else if(i == 2 && j == 2) {
+                            bottomright.click();
+                            tempflag = true;
+                            break;
+                        }
+                    }
+                }
+                if(tempflag == true) { break; }
+            }
+        }
+    }
+}, 250);
