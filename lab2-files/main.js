@@ -426,62 +426,62 @@ document.getElementById("new_game").addEventListener("click",function(){
     addListeners();
 });
 
-// setInterval( () => {
-//     if(playai == true) {
-//         if(turn % 2 == 1) {
-//             for(let i = 0; i < 3; i++) {
-//                 let tempflag = false;
-//                 for(let j = 0; j < 3; j++) {
-//                     if(arr[i][j] == '') {
-//                         if(i == 0 && j == 0) {
-//                             topleft.click();
-//                             tempflag = true;
-//                             break;
-//                         }
-//                         else if(i == 1 && j == 0) {
-//                             middleleft.click();
-//                             tempflag = true;
-//                             break;
-//                         }
-//                         else if(i == 2 && j == 0) {
-//                             bottomleft.click();
-//                             tempflag = true;
-//                             break;
-//                         }
-//                         else if(i == 0 && j == 1) {
-//                             topcenter.click();
-//                             tempflag = true;
-//                             break;
-//                         }
-//                         else if(i == 1 && j == 1) {
-//                             middlecenter.click();
-//                             tempflag = true;
-//                             break;
-//                         }                    
-//                         else if(i == 2 && j == 1) {
-//                             bottomcenter.click();
-//                             tempflag = true;
-//                             break;
-//                         }
-//                         else if(i == 0 && j == 2) {
-//                             topright.click();
-//                             tempflag = true;
-//                             break;
-//                         }
-//                         else if(i == 1 && j == 2) {
-//                             middleright.click();
-//                             tempflag = true;
-//                             break;
-//                         }
-//                         else if(i == 2 && j == 2) {
-//                             bottomright.click();
-//                             tempflag = true;
-//                             break;
-//                         }
-//                     }
-//                 }
-//                 if(tempflag == true) { break; }
-//             }
-//         }
-//     }
-// }, 250);
+setInterval( () => {
+    if(playai == true) {
+        if(turn % 2 == 1) {
+            for(let i = 0; i < 3; i++) {
+                let tempflag = false;
+                for(let j = 0; j < 3; j++) {
+                    if(arr[i][j] == '') {
+                        if(i == 0 && j == 0) {
+                            topleft.click();
+                            tempflag = true;
+                            break;
+                        }
+                        else if(i == 1 && j == 0) {
+                            middleleft.click();
+                            tempflag = true;
+                            break;
+                        }
+                        else if(i == 2 && j == 0) {
+                            bottomleft.click();
+                            tempflag = true;
+                            break;
+                        }
+                        else if(i == 0 && j == 1) {
+                            topcenter.click();
+                            tempflag = true;
+                            break;
+                        }
+                        else if(i == 1 && j == 1) {
+                            middlecenter.click();
+                            tempflag = true;
+                            break;
+                        }                    
+                        else if(i == 2 && j == 1) {
+                            bottomcenter.click();
+                            tempflag = true;
+                            break;
+                        }
+                        else if(i == 0 && j == 2) {
+                            topright.click();
+                            tempflag = true;
+                            break;
+                        }
+                        else if(i == 1 && j == 2) {
+                            middleright.click();
+                            tempflag = true;
+                            break;
+                        }
+                        else if(i == 2 && j == 2) {
+                            bottomright.click();
+                            tempflag = true;
+                            break;
+                        }
+                    }
+                }
+                if(tempflag == true) { break; }
+            }
+        }
+    }
+}, 250);
