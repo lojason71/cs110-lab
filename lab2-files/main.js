@@ -94,6 +94,9 @@ player1score.innerHTML = "0";
 player2score.innerHTML = "0";
 
 let time;
+let remainingTime = 15;
+// let timerflag = true;
+
 
 let playai = false;
 let player1 = 0;
@@ -223,29 +226,45 @@ function checkWin() {
 //         }, 1000);   
 // });
 
-
 function startPlayerTimer(){
-    var nows = Date.now();
+    // var nows = Date.now();
+    remainingTime = 15;
     time = setTimeout(() => {
         turn+=1;
-    }, 15000);
+        if (turn % 2 == 0){
+            displayturn.innerHTML = "Its your turn, X";
+        }
+        else {
+            displayturn.innerHTML = "Its your turn, O";
+        }
+        startPlayerTimer();
+    }, remainingTime * 1000);
 
-    function printPlayerTime(){
-        var remainings = Math.ceil((nows + 15000 - Date.now())/1000);
-        if (remainings > 0){
-            document.getElementById("playertimer").innerHTML = "Player time remaining: " + remainings   ;
-        }
-        else{
-            document.getElementById("playertimer").innerHTML = "";
-        }
-        if (remainings > 0){
-            setTimeout(printPlayerTime,1000);
-        }
-    }
-printPlayerTime();
+//     function printPlayerTime(){
+//         // var remainings = Math.ceil((nows + 15000 - Date.now())/1000);
+//         // if (remainings <= 0){
+//         //     return;
+//         // }
+//         if (!timerflag || remainingTime <= 0){
+//             resetPlayerTimer();
+//             return;
+//         }
+//         document.getElementById("playertimer").innerHTML = "Player time remaining: " + remainingTime;
+//         remainingTime--;
+//         if (remainingTime >= 0){
+//             setTimeout(printPlayerTime,1000);
+//         }
+//     }
+// printPlayerTime();
 }
 
-startPlayerTimer();
+// function resetPlayerTimer(){
+//     clearTimeout(time);
+//     remainingTime = 15;
+//     timerflag = false;
+//     startPlayerTimer();
+//     timerflag = true;
+// }
 
 
 var twoMinutes = new Date().getTime() + 120000;
@@ -281,7 +300,7 @@ function clickTile(temp){
         else { arr[0][0] = 'O'; player2moves.addmove(0,0);}
     }
     else if(temp == topcenter) {        
-        if(turn % 2 == 0) { arr[0][1] = 'X';  player1moves.addmove(0,1);}
+        if(turn % 2 == 0) { arr[0][1] = 'X'; player1moves.addmove(0,1);}
         else { arr[0][1] = 'O'; player2moves.addmove(0,1);}
     }
     else if(temp == topright) {        
@@ -290,7 +309,7 @@ function clickTile(temp){
     }
     else if(temp == middleleft) {        
         if(turn % 2 == 0) { arr[1][0] = 'X'; player1moves.addmove(1,0);}
-        else { arr[1][0] = 'O'; player2moves.addmove(1,0);}
+        else { arr[1][0] = 'O';player2moves.addmove(1,0);}
     }
     else if(temp == middlecenter) {        
         if(turn % 2 == 0) { arr[1][1] = 'X'; player1moves.addmove(1,1);}
@@ -298,7 +317,7 @@ function clickTile(temp){
     }
     else if(temp == middleright) {        
         if(turn % 2 == 0) { arr[1][2] = 'X'; player1moves.addmove(1,2);}
-        else { arr[1][2] = 'O'; player2moves.addmove(1,2);}
+        else { arr[1][2] = 'O';player2moves.addmove(1,2);}
     }
     else if(temp == bottomleft) {        
         if(turn % 2 == 0) { arr[2][0] = 'X'; player1moves.addmove(2,0);}
