@@ -94,7 +94,7 @@ player1score.innerHTML = "0";
 player2score.innerHTML = "0";
 
 let time;
-let remainingTime = 15;
+let remainingTime = 16;
 
 let playai = false;
 let player1 = 0;
@@ -230,7 +230,7 @@ function checkWin() {
 
 
 function startPlayerTimer(){
-    remainingTime = 15;
+    remainingTime = 16;
     time = setTimeout(() => {
         turn+=1;
         if (turn % 2 == 0){
@@ -244,14 +244,14 @@ function startPlayerTimer(){
 }
 
 
-twoMinutes = new Date().getTime() + 120000;
+twoMinutes = new Date().getTime() + 121000;
 
 var firstclick = (function(){
     click = false;
     return function() {
         if (!click){
             click = true;
-            twoMinutes = new Date().getTime() + 120000;
+            twoMinutes = new Date().getTime() + 121000;
             countdown = setInterval(function() {
                 var now = new Date().getTime();
                 var remaining = Math.floor((twoMinutes-now)/1000);
@@ -265,7 +265,26 @@ var firstclick = (function(){
         }
     };
 })();
+var x;
+var stopwatch;
+function startPlayerStopWatch(){
+    stopwatch = new Date().getTime() + 16000;
+    x = setInterval(function() {
+        var current = new Date().getTime();
+        var left = stopwatch - current;
+        var seconds = Math.floor((left%(1000*60))/1000);
+        document.getElementById("playertimer").innerHTML = "Player time left: " + seconds + " seconds";
+        if (left <= 0){
+            document.getElementById("playertimer").innerHTML = "Player time left: 0 seconds";
+            resetPlayerStopwatch();            
+        }
+    },1000);
+}
 
+function resetPlayerStopwatch(){
+    clearInterval(x);
+    startPlayerStopWatch();
+}
 
 function clickTile(temp){
     let i = 0;
@@ -323,6 +342,7 @@ function clickTile(temp){
     if(turn % 2 == 0) {
         clearTimeout(time);
         startPlayerTimer();
+        resetPlayerStopwatch();
         temp.getElementsByClassName("xo")[0].innerHTML = "X";
         displayturn.innerHTML = "Its your turn, O";
         checkWin();
@@ -330,6 +350,7 @@ function clickTile(temp){
     else{ 
         clearTimeout(time);
         startPlayerTimer();
+        resetPlayerStopwatch();
         temp.getElementsByClassName("xo")[0].innerHTML = "O";
         displayturn.innerHTML = "Its your turn, X";
         checkWin();
@@ -368,7 +389,7 @@ document.getElementById("reset").addEventListener("click",function(){
     document.getElementById("timer").innerHTML = "";
     addListeners();
     click = false;
-    twoMinutes = new Date().getTime() + 120000;
+    twoMinutes = new Date().getTime() + 121000;
     playerwon = false;
 });
 
@@ -399,7 +420,7 @@ document.getElementById("new_game").addEventListener("click",function(){
     document.getElementById("timer").innerHTML = "";
     addListeners();
     click = false;
-    twoMinutes = new Date().getTime() + 120000;
+    twoMinutes = new Date().getTime() + 121000;
     playerwon = false;
 });
 
