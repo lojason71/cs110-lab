@@ -159,6 +159,7 @@ function checkWin() {
                 removeListeners();
                 clearInterval(countdown);
                 clearTimeout(time);
+                clearInterval(x);
                 document.getElementById("playertimer").innerHTML = "";
                 document.getElementById("timer").innerHTML = "";
                 if (playerwon) {
@@ -178,6 +179,7 @@ function checkWin() {
                     removeListeners();
                     clearInterval(countdown);
                     clearTimeout(time);
+                    clearInterval(x);
                     document.getElementById("playertimer").innerHTML = "";
                     document.getElementById("timer").innerHTML = "";
                     if (playerwon) {
@@ -197,6 +199,7 @@ function checkWin() {
                 removeListeners();
                 clearInterval(countdown);
                 clearTimeout(time);
+                clearInterval(x);
                 document.getElementById("playertimer").innerHTML = "";
                 document.getElementById("timer").innerHTML = "";
                 if (playerwon) {
@@ -215,6 +218,7 @@ function checkWin() {
                 removeListeners();
                 clearInterval(countdown);
                 clearTimeout(time);
+                clearInterval(x);
                 document.getElementById("playertimer").innerHTML = "";
                 document.getElementById("timer").innerHTML = "";
                 if (playerwon) {
