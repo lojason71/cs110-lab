@@ -95,8 +95,6 @@ player2score.innerHTML = "0";
 
 let time;
 let remainingTime = 15;
-// let timerflag = true;
-
 
 let playai = false;
 let player1 = 0;
@@ -150,9 +148,8 @@ function removeListeners () {
     bottomcenter.replaceWith(bottomcenter.cloneNode(true));
     bottomright.replaceWith(bottomright.cloneNode(true));    
 }
-
+let playerwon = false;
 function checkWin() {
-    // if(turn % 5 != 0 && turn != 0) {
         for (let i = 0; i < 3; i++) {
             if (arr[i][0] !== "" && arr[i][0] === arr[i][1] && arr[i][1] === arr[i][2]) {
                 winner.innerHTML = "Player " + arr[i][0] +  " is the winner";
@@ -161,10 +158,15 @@ function checkWin() {
                 else { player2 += 1; player2score.innerHTML = player2; }
                 removeListeners();
                 clearInterval(countdown);
-                // clearInterval(timerPlayer);
                 clearTimeout(time);
                 document.getElementById("playertimer").innerHTML = "";
                 document.getElementById("timer").innerHTML = "";
+                if (playerwon) {
+                    player1 -= 1; player1score.innerHTML = player1;
+                }
+                if (playai == true && winner.innerHTML == "Player X is the winner"){
+                    playerwon = true;
+                }
                 return;
             }
             for (let j = 0; j < 3; j++) {
@@ -175,10 +177,15 @@ function checkWin() {
                     else { player2 += 1; player2score.innerHTML = player2; }
                     removeListeners();
                     clearInterval(countdown);
-                    // clearInterval(timerPlayer);
                     clearTimeout(time);
                     document.getElementById("playertimer").innerHTML = "";
                     document.getElementById("timer").innerHTML = "";
+                    if (playerwon) {
+                        player1 -= 1; player1score.innerHTML = player1;
+                    }
+                    if (playai == true && winner.innerHTML == "Player X is the winner"){
+                        playerwon = true;
+                    }
                     return;
                 }
             }
@@ -189,10 +196,15 @@ function checkWin() {
                 else { player2 += 1; player2score.innerHTML = player2; }
                 removeListeners();
                 clearInterval(countdown);
-                // clearInterval(timerPlayer);
                 clearTimeout(time);
                 document.getElementById("playertimer").innerHTML = "";
                 document.getElementById("timer").innerHTML = "";
+                if (playerwon) {
+                    player1 -= 1; player1score.innerHTML = player1;
+                }
+                if (playai == true && winner.innerHTML == "Player X is the winner"){
+                    playerwon = true;
+                }
                 return;
             }
             if (arr[0][2] !== "" && arr[0][2] === arr[1][1] && arr[1][1] === arr[2][0]) {
@@ -202,32 +214,22 @@ function checkWin() {
                 else { player2 += 1; player2score.innerHTML = player2; }
                 removeListeners();
                 clearInterval(countdown);
-                // clearInterval(timerPlayer);
                 clearTimeout(time);
                 document.getElementById("playertimer").innerHTML = "";
                 document.getElementById("timer").innerHTML = "";
+                if (playerwon) {
+                    player1 -= 1; player1score.innerHTML = player1;
+                }
+                if (playai == true && winner.innerHTML == "Player X is the winner"){
+                    playerwon = true;
+                }                
                 return;
             }
         }
     }
-// }
 
-// var fifteenSeconds = new Date().getTime() + 15000;
-
-// var playertime = (function() {
-//         timerPlayer = setInterval(function() {
-//             var nows = new Date().getTime();
-//             var remainings = Math.floor((fifteenSeconds-nows)/1000);
-//             document.getElementById("playertimer").innerHTML = "Player time remaining: " + Math.floor(remainings/60) + ":" + remainings%60;
-//             if (remainings <=0) {
-//                 clearInterval(timerPlayer);
-//                 //Next Player
-//             }
-//         }, 1000);   
-// });
 
 function startPlayerTimer(){
-    // var nows = Date.now();
     remainingTime = 15;
     time = setTimeout(() => {
         turn+=1;
@@ -239,38 +241,13 @@ function startPlayerTimer(){
         }
         startPlayerTimer();
     }, remainingTime * 1000);
-
-//     function printPlayerTime(){
-//         // var remainings = Math.ceil((nows + 15000 - Date.now())/1000);
-//         // if (remainings <= 0){
-//         //     return;
-//         // }
-//         if (!timerflag || remainingTime <= 0){
-//             resetPlayerTimer();
-//             return;
-//         }
-//         document.getElementById("playertimer").innerHTML = "Player time remaining: " + remainingTime;
-//         remainingTime--;
-//         if (remainingTime >= 0){
-//             setTimeout(printPlayerTime,1000);
-//         }
-//     }
-// printPlayerTime();
 }
 
-// function resetPlayerTimer(){
-//     clearTimeout(time);
-//     remainingTime = 15;
-//     timerflag = false;
-//     startPlayerTimer();
-//     timerflag = true;
-// }
 
-
-var twoMinutes = new Date().getTime() + 120000;
+twoMinutes = new Date().getTime() + 120000;
 
 var firstclick = (function(){
-    var click = false;
+    click = false;
     return function() {
         if (!click){
             click = true;
@@ -292,7 +269,7 @@ var firstclick = (function(){
 function clickTile(temp){
     let i = 0;
     let j = 0;
-    
+
     firstclick();
     
     if(temp == topleft) {        
@@ -342,11 +319,7 @@ function clickTile(temp){
     }   
 
     console.log(arr);
-    // if (turn > 0){
-    //     clearInterval(timerPlayer);
-    // }
     if(turn % 2 == 0) {
-        // playertime();
         clearTimeout(time);
         startPlayerTimer();
         temp.getElementsByClassName("xo")[0].innerHTML = "X";
@@ -354,7 +327,6 @@ function clickTile(temp){
         checkWin();
     }
     else{ 
-        // playertime();
         clearTimeout(time);
         startPlayerTimer();
         temp.getElementsByClassName("xo")[0].innerHTML = "O";
@@ -390,11 +362,13 @@ document.getElementById("reset").addEventListener("click",function(){
     player1score.innerHTML = player1;
     player2score.innerHTML = player2;
     clearInterval(countdown);
-    // clearInterval(timerPlayer);
     clearTimeout(time);
     document.getElementById("playertimer").innerHTML = "";
     document.getElementById("timer").innerHTML = "";
     addListeners();
+    click = false;
+    twoMinutes = new Date().getTime() + 120000;
+    playerwon = false;
 });
 
 document.getElementById("new_game").addEventListener("click",function(){
@@ -419,11 +393,13 @@ document.getElementById("new_game").addEventListener("click",function(){
         }
     }
     clearInterval(countdown);
-    // clearInterval(timerPlayer);
     clearTimeout(time);
     document.getElementById("playertimer").innerHTML = "";
     document.getElementById("timer").innerHTML = "";
     addListeners();
+    click = false;
+    twoMinutes = new Date().getTime() + 120000;
+    playerwon = false;
 });
 
 setInterval( () => {
