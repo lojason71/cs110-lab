@@ -148,7 +148,7 @@ function removeListeners () {
     bottomcenter.replaceWith(bottomcenter.cloneNode(true));
     bottomright.replaceWith(bottomright.cloneNode(true));    
 }
-
+let playerwon = false;
 function checkWin() {
         for (let i = 0; i < 3; i++) {
             if (arr[i][0] !== "" && arr[i][0] === arr[i][1] && arr[i][1] === arr[i][2]) {
@@ -161,6 +161,12 @@ function checkWin() {
                 clearTimeout(time);
                 document.getElementById("playertimer").innerHTML = "";
                 document.getElementById("timer").innerHTML = "";
+                if (playerwon) {
+                    player1 -= 1; player1score.innerHTML = player1;
+                }
+                if (playai == true && winner.innerHTML == "Player X is the winner"){
+                    playerwon = true;
+                }
                 return;
             }
             for (let j = 0; j < 3; j++) {
@@ -174,6 +180,12 @@ function checkWin() {
                     clearTimeout(time);
                     document.getElementById("playertimer").innerHTML = "";
                     document.getElementById("timer").innerHTML = "";
+                    if (playerwon) {
+                        player1 -= 1; player1score.innerHTML = player1;
+                    }
+                    if (playai == true && winner.innerHTML == "Player X is the winner"){
+                        playerwon = true;
+                    }
                     return;
                 }
             }
@@ -187,6 +199,12 @@ function checkWin() {
                 clearTimeout(time);
                 document.getElementById("playertimer").innerHTML = "";
                 document.getElementById("timer").innerHTML = "";
+                if (playerwon) {
+                    player1 -= 1; player1score.innerHTML = player1;
+                }
+                if (playai == true && winner.innerHTML == "Player X is the winner"){
+                    playerwon = true;
+                }
                 return;
             }
             if (arr[0][2] !== "" && arr[0][2] === arr[1][1] && arr[1][1] === arr[2][0]) {
@@ -199,6 +217,12 @@ function checkWin() {
                 clearTimeout(time);
                 document.getElementById("playertimer").innerHTML = "";
                 document.getElementById("timer").innerHTML = "";
+                if (playerwon) {
+                    player1 -= 1; player1score.innerHTML = player1;
+                }
+                if (playai == true && winner.innerHTML == "Player X is the winner"){
+                    playerwon = true;
+                }                
                 return;
             }
         }
@@ -344,6 +368,7 @@ document.getElementById("reset").addEventListener("click",function(){
     addListeners();
     click = false;
     twoMinutes = new Date().getTime() + 120000;
+    playerwon = false;
 });
 
 document.getElementById("new_game").addEventListener("click",function(){
@@ -374,6 +399,7 @@ document.getElementById("new_game").addEventListener("click",function(){
     addListeners();
     click = false;
     twoMinutes = new Date().getTime() + 120000;
+    playerwon = false;
 });
 
 setInterval( () => {
