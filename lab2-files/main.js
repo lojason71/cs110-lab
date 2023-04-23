@@ -1,20 +1,3 @@
-const controller = new AbortController();
-const signal = controller.signal;
-
-// class playerMoves {
-//     constructor() {
-//         this.moveNum = 0;
-//         this.moveX = [];
-//         this.moveY = [];
-//     }
-    
-//     addmove(x, y) {
-//         moveX.push(x);
-//         moveY.push(y);
-//         moveNum+=1;
-//     }
-// }
-
 let topleft = document.getElementById("one");
 let topcenter = document.getElementById("two");
 let topright = document.getElementById("three");
@@ -32,6 +15,80 @@ const displayturn = document.getElementById("turn");
 const playwithai = document.getElementById("playwithai");
 const selecttwoplayer = document.getElementById("selecttwoplayer");
 
+class playerMoves {
+    constructor() {
+        this.moveNum = 0;
+        this.moveX = [];
+        this.moveY = [];
+    }
+    
+    addmove(x, y) {
+        this.moveX.push(x);
+        this.moveY.push(y);
+        this.moveNum+=1;
+    }
+
+    popfront() {
+        let tempX = this.moveX.shift();
+        let tempY = this.moveY.shift();
+        if(tempX == 0 && tempY == 0) {
+            topleft = document.getElementById("one");
+            topleft.getElementsByClassName("xo")[0].innerHTML = "";
+            topleft.addEventListener("click", function onClick() {clickTile(topleft)}, {once: true});
+            console.log("popping");
+        }
+        else if(tempX == 0 && tempY == 1) { 
+            topcenter = document.getElementById("two");
+            topcenter.getElementsByClassName("xo")[0].innerHTML = "";
+            topcenter.addEventListener("click", function onClick() {clickTile(topcenter)}, {once: true});
+            console.log("popping");
+        }
+        else if(tempX == 0 && tempY == 2) {
+            topright = document.getElementById("three");
+            topright.getElementsByClassName("xo")[0].innerHTML = "";
+            topright.addEventListener("click", function onClick() {clickTile(topright)}, {once: true});
+            console.log("popping");
+        }
+        else if(tempX == 1 && tempY == 0) {
+            middleleft = document.getElementById("four");
+            middleleft.getElementsByClassName("xo")[0].innerHTML = "";
+            middleleft.addEventListener("click", function onClick() {clickTile(middleleft)}, {once: true});
+            console.log("popping");
+        }
+        else if(tempX == 1 && tempY == 1) {
+            middlecenter = document.getElementById("five");
+            middlecenter.getElementsByClassName("xo")[0].innerHTML = "";
+            middlecenter.addEventListener("click", function onClick() {clickTile(middlecenter)}, {once: true});
+            console.log("popping");
+        }
+        else if(tempX == 1 && tempY == 2) {
+            middleright = document.getElementById("six");
+            middleright.getElementsByClassName("xo")[0].innerHTML = "";
+            middleright.addEventListener("click", function onClick() {clickTile(middleright)}, {once: true});
+            console.log("popping");
+        }
+        else if(tempX == 2 && tempY == 0) {
+            bottomleft = document.getElementById("seven");
+            bottomleft.getElementsByClassName("xo")[0].innerHTML = "";
+            bottomleft.addEventListener("click", function onClick() {clickTile(bottomleft)}, {once: true});
+            console.log("popping");
+        }
+        else if(tempX == 2 && tempY == 1) {
+            bottomcenter = document.getElementById("eight");
+            bottomcenter.getElementsByClassName("xo")[0].innerHTML = "";
+            bottomcenter.addEventListener("click", function onClick() {clickTile(bottomcenter)}, {once: true});
+            console.log("popping");
+        }
+        else if(tempX == 2 && tempY == 2) {
+            bottomright = document.getElementById("nine");
+            bottomright.getElementsByClassName("xo")[0].innerHTML = "";
+            bottomright.addEventListener("click", function onClick() {clickTile(bottomright)}, {once: true});
+            console.log("popping");
+        }
+        this.moveNum -= 1;
+    } 
+}
+
 displayturn.innerHTML = "Its your turn, X";
 player1score.innerHTML = "0";
 player2score.innerHTML = "0";
@@ -42,10 +99,10 @@ let playai = false;
 let player1 = 0;
 let player2 = 0;
 let turn = 0;
-var arr = [[""]];
-// let player1moves = new playerMoves();
-// let player2moves = new playerMoves();
+let player1moves = new playerMoves();
+let player2moves = new playerMoves();
 
+var arr = [[""]];
 for (let i = 0; i < 3; i++){
     arr[i] = new Array(3);
     for (let j = 0; j < 3; j++){
@@ -92,62 +149,64 @@ function removeListeners () {
 }
 
 function checkWin() {
-    for (let i = 0; i < 3; i++) {
-      if (arr[i][0] !== "" && arr[i][0] === arr[i][1] && arr[i][1] === arr[i][2]) {
-        winner.innerHTML = "Player " + arr[i][0] +  " is the winner";
-        displayturn.innerHTML = "";
-        if(arr[i][0] == 'X') { player1 += 1; player1score.innerHTML = player1; }
-        else { player2 += 1; player2score.innerHTML = player2; }
-        removeListeners();
-        clearInterval(countdown);
-        // clearInterval(timerPlayer);
-        clearTimeout(time);
-        document.getElementById("playertimer").innerHTML = "";
-        document.getElementById("timer").innerHTML = "";
-        return;
+    if(turn % 5 != 0 && turn != 0) {
+        for (let i = 0; i < 3; i++) {
+            if (arr[i][0] !== "" && arr[i][0] === arr[i][1] && arr[i][1] === arr[i][2]) {
+                winner.innerHTML = "Player " + arr[i][0] +  " is the winner";
+                displayturn.innerHTML = "";
+                if(arr[i][0] == 'X') { player1 += 1; player1score.innerHTML = player1; }
+                else { player2 += 1; player2score.innerHTML = player2; }
+                removeListeners();
+                clearInterval(countdown);
+                // clearInterval(timerPlayer);
+                clearTimeout(time);
+                document.getElementById("playertimer").innerHTML = "";
+                document.getElementById("timer").innerHTML = "";
+                return;
+            }
+            for (let j = 0; j < 3; j++) {
+                if (arr[0][j] !== "" && arr[0][j] === arr[1][j] && arr[1][j] === arr[2][j]) {
+                    winner.innerHTML = "Player " + arr[0][j] +  " is the winner";
+                    displayturn.innerHTML = "";
+                    if(arr[0][j] == 'X') { player1 += 1; player1score.innerHTML = player1; }
+                    else { player2 += 1; player2score.innerHTML = player2; }
+                    removeListeners();
+                    clearInterval(countdown);
+                    // clearInterval(timerPlayer);
+                    clearTimeout(time);
+                    document.getElementById("playertimer").innerHTML = "";
+                    document.getElementById("timer").innerHTML = "";
+                    return;
+                }
+            }
+            if (arr[0][0] !== "" && arr[0][0] === arr[1][1] && arr[1][1] === arr[2][2]) {
+                winner.innerHTML = "Player " + arr[0][0] +  " is the winner";
+                displayturn.innerHTML = "";
+                if(arr[0][0] == 'X') { player1 += 1; player1score.innerHTML = player1; }
+                else { player2 += 1; player2score.innerHTML = player2; }
+                removeListeners();
+                clearInterval(countdown);
+                // clearInterval(timerPlayer);
+                clearTimeout(time);
+                document.getElementById("playertimer").innerHTML = "";
+                document.getElementById("timer").innerHTML = "";
+                return;
+            }
+            if (arr[0][2] !== "" && arr[0][2] === arr[1][1] && arr[1][1] === arr[2][0]) {
+                winner.innerHTML = "Player " + arr[0][2] +  " is the winner";
+                displayturn.innerHTML = "";
+                if(arr[0][2] == 'X') { player1 += 1; player1score.innerHTML = player1; }
+                else { player2 += 1; player2score.innerHTML = player2; }
+                removeListeners();
+                clearInterval(countdown);
+                // clearInterval(timerPlayer);
+                clearTimeout(time);
+                document.getElementById("playertimer").innerHTML = "";
+                document.getElementById("timer").innerHTML = "";
+                return;
+            }
+        }
     }
-    for (let j = 0; j < 3; j++) {
-      if (arr[0][j] !== "" && arr[0][j] === arr[1][j] && arr[1][j] === arr[2][j]) {
-        winner.innerHTML = "Player " + arr[0][j] +  " is the winner";
-        displayturn.innerHTML = "";
-        if(arr[0][j] == 'X') { player1 += 1; player1score.innerHTML = player1; }
-        else { player2 += 1; player2score.innerHTML = player2; }
-        removeListeners();
-        clearInterval(countdown);
-        // clearInterval(timerPlayer);
-        clearTimeout(time);
-        document.getElementById("playertimer").innerHTML = "";
-        document.getElementById("timer").innerHTML = "";
-        return;
-      }
-    }
-    if (arr[0][0] !== "" && arr[0][0] === arr[1][1] && arr[1][1] === arr[2][2]) {
-        winner.innerHTML = "Player " + arr[0][0] +  " is the winner";
-        displayturn.innerHTML = "";
-        if(arr[0][0] == 'X') { player1 += 1; player1score.innerHTML = player1; }
-        else { player2 += 1; player2score.innerHTML = player2; }
-        removeListeners();
-        clearInterval(countdown);
-        // clearInterval(timerPlayer);
-        clearTimeout(time);
-        document.getElementById("playertimer").innerHTML = "";
-        document.getElementById("timer").innerHTML = "";
-        return;
-    }
-    if (arr[0][2] !== "" && arr[0][2] === arr[1][1] && arr[1][1] === arr[2][0]) {
-        winner.innerHTML = "Player " + arr[0][2] +  " is the winner";
-        displayturn.innerHTML = "";
-        if(arr[0][2] == 'X') { player1 += 1; player1score.innerHTML = player1; }
-        else { player2 += 1; player2score.innerHTML = player2; }
-        removeListeners();
-        clearInterval(countdown);
-        // clearInterval(timerPlayer);
-        clearTimeout(time);
-        document.getElementById("playertimer").innerHTML = "";
-        document.getElementById("timer").innerHTML = "";
-        return;
-    }
-  }
 }
 
 // var fifteenSeconds = new Date().getTime() + 15000;
@@ -220,7 +279,6 @@ function clickTile(temp){
     if(temp == topleft) {        
         if(turn % 2 == 0) { arr[0][0] = 'X'; player1moves.addmove(0,0);}
         else { arr[0][0] = 'O'; player2moves.addmove(0,0);}
-        
     }
     else if(temp == topcenter) {        
         if(turn % 2 == 0) { arr[0][1] = 'X';  player1moves.addmove(0,1);}
@@ -253,7 +311,16 @@ function clickTile(temp){
     else if(temp == bottomright) {        
         if(turn % 2 == 0) { arr[2][2] = 'X'; player1moves.addmove(2,2);}
         else {arr[2][2] = 'O'; player2moves.addmove(2,2);}
+    }   
+
+    if(player1moves.moveNum % 5 == 0 && player1moves.moveNum != 0) {
+        arr[player1moves.moveX[0]][player1moves.moveY[0]] = '';
+        player1moves.popfront();    
     }
+    else if(player2moves.moveNum % 5 == 0 && player2moves.moveNum != 0) {
+        arr[player2moves.moveX[0]][player2moves.moveY[0]] = '';
+        player2moves.popfront();
+    }   
 
     console.log(arr);
     // if (turn > 0){
@@ -261,16 +328,16 @@ function clickTile(temp){
     // }
     if(turn % 2 == 0) {
         // playertime();
-        clearTimeout(time);
-        startPlayerTimer();
+        // clearTimeout(time);
+        // startPlayerTimer();
         temp.getElementsByClassName("xo")[0].innerHTML = "X";
         displayturn.innerHTML = "Its your turn, O";
         checkWin();
     }
     else{ 
         // playertime();
-        clearTimeout(time);
-        startPlayerTimer();
+        // clearTimeout(time);
+        // startPlayerTimer();
         temp.getElementsByClassName("xo")[0].innerHTML = "O";
         displayturn.innerHTML = "Its your turn, X";
         checkWin();
@@ -297,6 +364,8 @@ document.getElementById("reset").addEventListener("click",function(){
             arr[i][j] = "";
         }
     }
+    player1moves = new playerMoves();
+    player2moves = new playerMoves();
     player1 = 0;
     player2 = 0;
     player1score.innerHTML = player1;
@@ -319,6 +388,8 @@ document.getElementById("new_game").addEventListener("click",function(){
     document.getElementById("seven").getElementsByClassName("xo")[0].innerHTML = "";
     document.getElementById("eight").getElementsByClassName("xo")[0].innerHTML = "";
     document.getElementById("nine").getElementsByClassName("xo")[0].innerHTML = "";
+    player1moves = new playerMoves();
+    player2moves = new playerMoves();
     displayturn.innerHTML = "Its your turn, X";
     turn = 0;
     winner.innerHTML = "";
@@ -336,70 +407,62 @@ document.getElementById("new_game").addEventListener("click",function(){
     addListeners();
 });
 
-setInterval( () => {
-    // if(player1moves.turn % 5 == 0) {
-    //     player1moves.popfront();
-    //     player1moves.popfront();
-    // }
-    // if(player2moves.turn % 5 == 0) {
-    //     player2moves.moveX.shift();
-    //     player2moves.moveY.shift();
-    // }
-    if(playai == true) {
-        if(turn % 2 == 1) {
-            for(let i = 0; i < 3; i++) {
-                let tempflag = false;
-                for(let j = 0; j < 3; j++) {
-                    if(arr[i][j] == '') {
-                        if(i == 0 && j == 0) {
-                            topleft.click();
-                            tempflag = true;
-                            break;
-                        }
-                        else if(i == 1 && j == 0) {
-                            middleleft.click();
-                            tempflag = true;
-                            break;
-                        }
-                        else if(i == 2 && j == 0) {
-                            bottomleft.click();
-                            tempflag = true;
-                            break;
-                        }
-                        else if(i == 0 && j == 1) {
-                            topcenter.click();
-                            tempflag = true;
-                            break;
-                        }
-                        else if(i == 1 && j == 1) {
-                            middlecenter.click();
-                            tempflag = true;
-                            break;
-                        }                    
-                        else if(i == 2 && j == 1) {
-                            bottomcenter.click();
-                            tempflag = true;
-                            break;
-                        }
-                        else if(i == 0 && j == 2) {
-                            topright.click();
-                            tempflag = true;
-                            break;
-                        }
-                        else if(i == 1 && j == 2) {
-                            middleright.click();
-                            tempflag = true;
-                            break;
-                        }
-                        else if(i == 2 && j == 2) {
-                            bottomright.click();
-                            tempflag = true;
-                            break;
-                        }
-                    }
-                }
-                if(tempflag == true) { break; }
-            }
-        }
-    }
-}, 250);
+// setInterval( () => {
+//     if(playai == true) {
+//         if(turn % 2 == 1) {
+//             for(let i = 0; i < 3; i++) {
+//                 let tempflag = false;
+//                 for(let j = 0; j < 3; j++) {
+//                     if(arr[i][j] == '') {
+//                         if(i == 0 && j == 0) {
+//                             topleft.click();
+//                             tempflag = true;
+//                             break;
+//                         }
+//                         else if(i == 1 && j == 0) {
+//                             middleleft.click();
+//                             tempflag = true;
+//                             break;
+//                         }
+//                         else if(i == 2 && j == 0) {
+//                             bottomleft.click();
+//                             tempflag = true;
+//                             break;
+//                         }
+//                         else if(i == 0 && j == 1) {
+//                             topcenter.click();
+//                             tempflag = true;
+//                             break;
+//                         }
+//                         else if(i == 1 && j == 1) {
+//                             middlecenter.click();
+//                             tempflag = true;
+//                             break;
+//                         }                    
+//                         else if(i == 2 && j == 1) {
+//                             bottomcenter.click();
+//                             tempflag = true;
+//                             break;
+//                         }
+//                         else if(i == 0 && j == 2) {
+//                             topright.click();
+//                             tempflag = true;
+//                             break;
+//                         }
+//                         else if(i == 1 && j == 2) {
+//                             middleright.click();
+//                             tempflag = true;
+//                             break;
+//                         }
+//                         else if(i == 2 && j == 2) {
+//                             bottomright.click();
+//                             tempflag = true;
+//                             break;
+//                         }
+//                     }
+//                 }
+//                 if(tempflag == true) { break; }
+//             }
+//         }
+//     }
+// }, 250);
