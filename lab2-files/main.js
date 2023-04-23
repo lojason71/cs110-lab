@@ -251,6 +251,7 @@ var firstclick = (function(){
     return function() {
         if (!click){
             click = true;
+            twoMinutes = new Date().getTime() + 120000;
             countdown = setInterval(function() {
                 var now = new Date().getTime();
                 var remaining = Math.floor((twoMinutes-now)/1000);
