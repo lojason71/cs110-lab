@@ -152,7 +152,7 @@ function removeListeners () {
 }
 
 function checkWin() {
-    if(turn % 5 != 0 && turn != 0) {
+    // if(turn % 5 != 0 && turn != 0) {
         for (let i = 0; i < 3; i++) {
             if (arr[i][0] !== "" && arr[i][0] === arr[i][1] && arr[i][1] === arr[i][2]) {
                 winner.innerHTML = "Player " + arr[i][0] +  " is the winner";
@@ -210,7 +210,7 @@ function checkWin() {
             }
         }
     }
-}
+// }
 
 // var fifteenSeconds = new Date().getTime() + 15000;
 
