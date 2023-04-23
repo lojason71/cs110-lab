@@ -234,10 +234,10 @@ function startPlayerTimer(){
     time = setTimeout(() => {
         turn+=1;
         if (turn % 2 == 0){
-            displayturn.innerHTML = "Its your turn, X";
+            displayturn.innerHTML = "Previous turn has skipped. Its your turn, X";
         }
         else {
-            displayturn.innerHTML = "Its your turn, O";
+            displayturn.innerHTML = "Previous turn has skipped. Its your turn, O";
         }
         startPlayerTimer();
     }, remainingTime * 1000);
