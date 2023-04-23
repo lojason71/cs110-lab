@@ -244,14 +244,14 @@ function startPlayerTimer(){
 }
 
 
-twoMinutes = new Date().getTime() + 121000;
+twoMinutes = new Date().getTime() + 120000;
 
 var firstclick = (function(){
     click = false;
     return function() {
         if (!click){
             click = true;
-            twoMinutes = new Date().getTime() + 121000;
+            twoMinutes = new Date().getTime() + 120000;
             countdown = setInterval(function() {
                 var now = new Date().getTime();
                 var remaining = Math.floor((twoMinutes-now)/1000);
@@ -389,7 +389,7 @@ document.getElementById("reset").addEventListener("click",function(){
     document.getElementById("timer").innerHTML = "";
     addListeners();
     click = false;
-    twoMinutes = new Date().getTime() + 121000;
+    twoMinutes = new Date().getTime() + 120000;
     playerwon = false;
 });
 
@@ -420,7 +420,7 @@ document.getElementById("new_game").addEventListener("click",function(){
     document.getElementById("timer").innerHTML = "";
     addListeners();
     click = false;
-    twoMinutes = new Date().getTime() + 121000;
+    twoMinutes = new Date().getTime() + 120000;
     playerwon = false;
 });
 
