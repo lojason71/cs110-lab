@@ -347,16 +347,16 @@ function clickTile(temp){
     // }
     if(turn % 2 == 0) {
         // playertime();
-        // clearTimeout(time);
-        // startPlayerTimer();
+        clearTimeout(time);
+        startPlayerTimer();
         temp.getElementsByClassName("xo")[0].innerHTML = "X";
         displayturn.innerHTML = "Its your turn, O";
         checkWin();
     }
     else{ 
         // playertime();
-        // clearTimeout(time);
-        // startPlayerTimer();
+        clearTimeout(time);
+        startPlayerTimer();
         temp.getElementsByClassName("xo")[0].innerHTML = "O";
         displayturn.innerHTML = "Its your turn, X";
         checkWin();
