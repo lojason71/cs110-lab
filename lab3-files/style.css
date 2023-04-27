@@ -1,0 +1,263 @@
+/* Jason Lo and Nathan Kong  */
+/* Feel free to edit CSS of body if you'd like. We provide you the light gray background color and font family in the body styling */
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin: 0;
+    background-color: lightblue !important;
+    /* max-width: 1190px; */
+  }
+  
+  nav {
+    background-color: grey;
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    top: 0%;
+    display: flex;
+    list-style:none;
+  }
+  
+  nav li {
+    margin: 5px;
+  }
+  
+  #skiplink {
+    display: none;
+  }
+  
+  #wrapper {
+    display: flex;
+    margin-top:100px;
+    height:auto;
+    width:auto;
+    max-width:1190px;
+    margin: 56px auto;
+  }
+  
+  #content-left {
+    height: 200px;
+    width: 30%;
+    /* background-color: blue; */
+  }
+  
+  #content-center {
+    height: auto;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    margin:10px; 
+  }
+  
+  #content-right {
+    height: 270px;
+    width: 30%;
+    background-color: white;
+  }
+  
+  #profile-picture {
+    height: 75px;
+    width: 75px;
+    position:relative;
+    background-color: green;
+    border-radius: 50%;
+    border: 2px solid white;
+    left: 10%;
+    top: -10px;
+    z-index: 100;
+  }
+  
+  #cover {
+    background-color: black;
+    width: 100%;
+    padding: 20px;
+    z-index:0; 
+  }
+  
+  #cover-picture{
+    background-color: white;
+  }
+  
+  #twitter-handle {
+    position: relative;
+    left: 15%;
+    top: -20px;
+    font-size: 20px;
+    text-decoration: underline;
+  }
+  
+  #profile-stats {
+    display: flex;
+    justify-content: space-evenly;
+    color: grey;
+  }
+  
+  #profile-stats-numbers {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    width: 100%;
+    color: #1DA1F2;
+  }
+  
+  #profile-stats-wrapper{
+    background-color: white;
+  }
+  
+  .topheader {
+    position:fixed;
+    top:0;
+    left:0; 
+    z-index:100;
+  }
+  
+  .twitterlogo {
+    position:fixed;
+    display:block;
+    left:50%;
+    margin-left:-15px;
+  }
+  
+  .tweetbutton {
+    background-color: rgb(29, 155, 240);
+    color:white;
+    display:block;
+    position:fixed;
+    /* margin-left:-60px; */
+     margin-left:-100px; 
+    font-size:20px;
+    left:99%;
+    border-radius: 100px;
+    border-color: transparent;
+    cursor:pointer;
+    padding: 2px 20px;
+  }
+  
+  .full-tweet {
+    background-color: white;
+    border-bottom: 1px solid #e6ecf0;
+    padding:10px;
+   }
+  
+  .profile-picture-tweets {
+    height: 45px;
+    width: 45px;
+    position:relative;
+    /* background-color: green; */
+    border-radius: 50%;
+    border: 2px solid white;
+    top: 10px;
+  }
+  
+  .twitter-handle-tweet {
+    position: relative;
+    font-size: 15px;
+  }
+  
+  .twitter-handle-tweet-date {
+    position: relative;
+    font-size: 15px;
+    color: gray !important;
+  }
+  
+  .tweet {
+    inline-size: 75%;
+    overflow-wrap: break-word;
+    background-color: white;
+    position: relative;
+    font-size: 15px;
+    left:11%;
+    top:-10%;
+  }
+  
+  .follow {
+    position:relative;
+    min-height:51px;
+    border-bottom: 1px solid #e6ecf0;  
+    padding-bottom:12%;
+    padding-top:3%;
+  }
+  
+  #followtext {
+    position: relative;
+    left: 5%;
+    /* top: 25%;  */
+    font-size: 20px;
+  }
+  
+  #follow-picture-linguini{
+    height: 48px;
+    width: 48px;
+    position:relative;
+    /* background-color: green; */
+    border-radius: 50%;
+    border: 2px solid white;
+    left: 5%;
+    top: 40%;
+  }
+  
+  #follow-picture-ta{
+    height: 45px;
+    width: 45px;
+    position:relative;
+    /* background-color: green; */
+    border-radius: 50%;
+    border: 2px solid green;
+    left: 5%;
+    top: 40%;
+  }
+  
+  .followbutton {
+    background-color: white;
+    display:block;
+    position:absolute;
+    color: rgb(29, 155, 240);
+    border: 2px solid rgb(29, 155, 240);
+    border-radius: 100px; 
+    right: 57%;
+    cursor:pointer;
+    padding: 1px 15px;
+  }
+  
+  .follow-name{
+    position: relative;
+    left: 5%;
+    /* top: -20px; */
+    font-size: 15px;
+  }
+  #handle-color {
+    position: relative;
+    font-size: 15px;
+    color: gray;
+    /* left:-10%; */
+  }
+  .follow-handle {
+    position: relative;
+    font-size: 15px;
+    color: gray !important;
+    left: 5%;
+  }
+  
+  @media (max-width: 1200px) {
+    #content-right {
+      display:none;
+    }
+  }
+  
+  .searchbar input[type="text"]{
+    height:auto;
+    width: 350px !important;
+    font-size: 17px;
+    margin-bottom: 15px;
+  }
+
+.feedpause {
+    position: relative;
+    font-size: 17px;
+    color: gray !important;
+  }
+
+#feedRefresh {
+    height:15px;
+    width:15px;
+}
+  /* TODO: Create CSS for your Twitter Mockup */
