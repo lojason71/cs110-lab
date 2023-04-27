@@ -98,7 +98,7 @@ $(document).ready(function(){
         // Get the content-center element. We want to add tweets to this
         center = document.getElementById("content-center");
         // Suggest emptying the current tweets at some point
-        // document.getElementById("tweetlist").innerHTML = "";
+        document.getElementById("tweetlist").innerHTML = "";
         // Sort the array of tweets chronologically
         let dataArrSorted = dataArrUnsort.sort(function(a,b) {
             atime = a.date.slice(11,18).replace(/:/g,'');
@@ -121,7 +121,7 @@ $(document).ready(function(){
                     imgURL = dataArrSorted[i].avatar;
                     http.open("HEAD", imgURL);
                     http.send();
-                    if (http.status != 0) {    
+                    if (http.status != 0 && http.status != 404) {    
                         // Success! 
                         // Add the img to the Tweet we are creating
                         let img = document.createElement("img");
