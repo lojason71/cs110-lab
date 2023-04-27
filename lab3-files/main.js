@@ -116,27 +116,25 @@ $(document).ready(function(){
             fulltweet.classList.add("full-tweet");
             // We want to include the profile picture
                 // Can check if the image exists 
-                if(dataArrSorted[i].avatar) {
-                    var http = new XMLHttpRequest();
-                    imgURL = dataArrSorted[i].avatar;
-                    http.open("HEAD", imgURL);
-                    http.send();
-                    if (http.status != 0 && http.status != 404) {    
-                        // Success! 
-                        // Add the img to the Tweet we are creating
-                        let img = document.createElement("img");
-                        img.src = imgURL;
-                        img.classList = "profile-picture-tweets"
-                        fulltweet.appendChild(img);
+            var http = new XMLHttpRequest();
+            imgURL = dataArrSorted[i].avatar;
+            http.open("HEAD", imgURL, false);
+            http.send();
+            if (http.status != 0 && http.status != 404) {    
+                // Success! 
+                // Add the img to the Tweet we are creating
+                let img = document.createElement("img");
+                img.src = imgURL;
+                img.classList = "profile-picture-tweets"
+                fulltweet.appendChild(img);
 
-                    }
-                    else {
-                        let img = document.createElement("img");
-                        img.src = "./images/ratatouille.jpg";
-                        img.classList = "profile-picture-tweets"
-                        fulltweet.appendChild(img);
-                    }
-                }
+            }
+            else {
+                let img = document.createElement("img");
+                img.src = "./images/ratatouille.jpg";
+                img.classList = "profile-picture-tweets"
+                fulltweet.appendChild(img);
+            }
             // Create all of the additional pieces of information
             // Username
             let b = document.createElement("b");
