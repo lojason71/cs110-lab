@@ -1,22 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import NewPost from './NewPost/newPost';
+import Comment from './Comment/comment';
+
+import {useState, useEffect} from 'react';
 
 function App() {
+  const [comments, setComments] = useState([])
+
+  const addComment = (comment) => {
+    //setComments([])
+  }
+  const addReply = (reply) => {
+    //setReply
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div className = "postContainer">
+          <div id='title'>
+            New Post
+          </div>
+        {/* <NewPost addComment=(addComment)></NewPost> */}
+        </div>
+        <div className = 'commentContainer'>
+          {comments.map((comment) => {
+            // <Comment addComment=(addReply) comments={comment}></Comment>
+          })}
+        </div>
       </header>
     </div>
   );
