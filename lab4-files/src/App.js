@@ -18,7 +18,7 @@ function App() {
   return (
     <div className = "postContainer">
       <h1> 
-        <b>New Post</b>
+        <strong>New Post</strong>
       </h1>
       <NewPost onMessageSubmit={addComment}/>
       <div className = "commentContainer">  

@@ -12,7 +12,7 @@ import { ButtonBase, TextField, Box} from '@mui/material';
 import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
 
-export default function NewComment(props) {
+export default function Comment(props) {
 
     const [replies, setReply] = useState([])
     const [isVisible, setIsVisible] = useState(false)
@@ -60,13 +60,12 @@ export default function NewComment(props) {
                     <AddCommentIcon/>
                     Reply
                 </Box>
-                {/* <Button> Reply </Button> */}
                 <Box id="replycontainer"> 
                     <Box>
                         {isVisible && <NewPost onMessageSubmit={addReply}/>}
                         {replies.map((reply) => {
-                        return  <NewComment username={reply.username} postMessage={reply.message} /> ;
-                    })}
+                            return  <Comment username={reply.username} postMessage={reply.message} /> ;
+                        })}
                     </Box> 
                 </Box>
             </Box>
