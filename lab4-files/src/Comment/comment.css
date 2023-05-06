@@ -5,14 +5,19 @@
     display: block;
 }
 
-#up{
-    padding-left:15%;
-}
-
-#down{
-    padding-left:15%;
-}
-
 #arrows{
-    padding-top:-100px;
+    display: flex;
+    flex-direction:column;
+    margin-left: 75px;
+    margin-top: -15px;
+}
+
+#arrow_container{
+    display:flex;
+}
+
+#vote{
+    margin-left:87px;
+    margin-top:-20px;
+    font-size: 25px;
 }

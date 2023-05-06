@@ -7,7 +7,6 @@ import {useState, useEffect} from 'react';
 
 function App() {
   const [comments, setComments] = useState([])
-  // const [reply, setReply] = useState([])
 
   const addComment = (newComment, username) => {
     let tempObject = new Object();
@@ -15,10 +14,6 @@ function App() {
     tempObject.username = username;
     setComments([...comments, tempObject]);
   }
-
-  // const addReply = (reply) => {
-  //   setReply()
-  // }
 
   return (
     <div className = "postContainer">

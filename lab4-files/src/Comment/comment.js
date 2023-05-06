@@ -4,25 +4,20 @@ import {useState, useEffect} from 'react';
 import NewPost from '../NewPost/newPost';
 
 import Button from '@mui/joy/Button';
- import  KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
- import  KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import  KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import  KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { ButtonBase, TextField, Box} from '@mui/material';
+import IconButton from '@mui/material/IconButton'
+import Stack from '@mui/material/Stack'
 
 export default function NewComment(props) {
 
     const [replies, setReply] = useState([])
-
     const [isVisible, setIsVisible] = useState(false)
+    const [vote, setVote] = useState(0);
 
     const toggleVisiblity = () => {
         setIsVisible(!isVisible);
-    }
-
-    const handleReply = (event) => {
-        document.getElementById.classList.toggle("visible");
-    }
-    const handleSubmit = (event) => {
-        props.addComment();
     }
 
     const addReply = (newReply, username) => {
@@ -33,22 +28,29 @@ export default function NewComment(props) {
         setIsVisible(false);
     }
 
-    const increase = (event) => {
-
-    }
+    const increase = () => {
+        setVote(vote + 1);
+    };
     
-    const decrease = (event) => {
-        
-    }
+    const decrease = () => {
+        setVote(vote - 1);
+    };
 
     return (
         <Box>   
             <Box>
                 {props.username} 
-                <Box id="arrows" display = "flex" flexWrap = "wrap">
+                <Box id = "arrow_container">
                     {props.postMessage}
-                    <KeyboardArrowUpIcon id = "up" alignSelf = "flex-end" onclick = {increase}> </KeyboardArrowUpIcon>
-                    <KeyboardArrowDownIcon id = "down" alignSelf = "flex-end" onclick = {decrease}> </KeyboardArrowDownIcon>
+                    <Stack direction="column" spacing = {2}>
+                        <IconButton id = "arrows" onClick = {increase}>
+                            <KeyboardArrowUpIcon/> 
+                        </IconButton>
+                        <span id = "vote">{vote}</span>
+                        <IconButton id = "arrows" onClick = {decrease}>
+                            <KeyboardArrowDownIcon /> 
+                        </IconButton>
+                    </Stack>
                 </Box>
             </Box>
             <Box id="box" display = "flex" justifyContent ="flex-start" alignItems="flex-start">
