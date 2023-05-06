@@ -10,10 +10,13 @@ import { ButtonBase, TextField, Box} from '@mui/material';
 
 export default function NewComment(props) {
 
+    const [replies, setReply] = useState([])
 
-    const [isVisible, setIsVisible] = useStatetrue(;
+    const [isVisible, setIsVisible] = useState(false)
 
-    const toggleVisibli)
+    const toggleVisiblity = () => {
+        setIsVisible(!isVisible);
+    }
 
     const handleReply = (event) => {
         document.getElementById.classList.toggle("visible");
@@ -21,6 +24,15 @@ export default function NewComment(props) {
     const handleSubmit = (event) => {
         props.addComment();
     }
+
+    const addReply = (newReply, username) => {
+        let tempObject = new Object();
+        tempObject.message = newReply;
+        tempObject.username = username;
+        setReply([...replies, tempObject]);
+        setIsVisible(false);
+    }
+
     const increase = (event) => {
 
     }
@@ -32,16 +44,21 @@ export default function NewComment(props) {
     return (
         <Box>   
             <Box>
-                <Box> {props.username}</Box>
-                <Box> {props.postMessage} </Box>
-                <KeyboardArrowUpIcon onclick = {increase}></KeyboardArrowUpIcon>
-                <KeyboardArrowDownIcon onclick = {decrease}></KeyboardArrowDownIcon>
+                {props.username} 
+                <Box id="arrows" display = "flex" flexWrap = "wrap">
+                    {props.postMessage}
+                    <KeyboardArrowUpIcon id = "up" alignSelf = "flex-end" onclick = {increase}> </KeyboardArrowUpIcon>
+                    <KeyboardArrowDownIcon id = "down" alignSelf = "flex-end" onclick = {decrease}> </KeyboardArrowDownIcon>
+                </Box>
             </Box>
             <Box id="box" display = "flex" justifyContent ="flex-start" alignItems="flex-start">
-                <Button onClick={handleReply}> Reply </Button>
-                    <Box id="replycontainer"> 
-                        <NewPost id="replypost" />
-                    </Box>
+                <Button onClick={toggleVisiblity}> Reply </Button>
+                <Box> 
+                    {isVisible && <NewPost onMessageSubmit={addReply}/>}
+                    {replies.map((reply) => {
+                        return <NewComment username={reply.username} postMessage={reply.message} />;
+                    })}
+                </Box>
             </Box>
         </Box> 
     );

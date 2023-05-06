@@ -4,3 +4,15 @@
 #id.visible {
     display: block;
 }
+
+#up{
+    padding-left:15%;
+}
+
+#down{
+    padding-left:15%;
+}
+
+#arrows{
+    padding-top:-100px;
+}
