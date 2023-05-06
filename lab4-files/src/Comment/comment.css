@@ -1,0 +1,6 @@
+#id {
+    display: none;
+}
+#id.visible {
+    display: block;
+}
