@@ -1,13 +1,13 @@
 #MessageBox{
     height: auto;
-    width: 1000px;
+    width: 550px;
+    margin-top: 10px;
 }
 #UsernameBox{
     height: auto;
-    width: 1000px;
-    padding-top: 40px;
+    width:500px;
 }
 
 #box{
-    width: 1030px;
+    width: 550px;
 }

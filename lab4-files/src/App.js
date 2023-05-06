@@ -1,6 +1,6 @@
 import './App.css';
 import NewPost from './NewPost/newPost';
-import NewComment from './Comment/comment';
+import Comment from './Comment/comment';
 
 import {useState, useEffect} from 'react';
 
@@ -23,7 +23,7 @@ function App() {
       <NewPost onMessageSubmit={addComment}/>
       <div className = "commentContainer">  
         {comments.map((comment) => {
-          return <NewComment username={comment.username} postMessage={comment.message} />;
+          return <Comment username={comment.username} postMessage={comment.message} />;
         })}
       </div> 
     </div>

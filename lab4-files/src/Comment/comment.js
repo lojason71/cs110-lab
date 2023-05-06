@@ -6,6 +6,8 @@ import NewPost from '../NewPost/newPost';
 import Button from '@mui/joy/Button';
 import  KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import  KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import AddCommentIcon from '@mui/icons-material/AddComment';
+
 import { ButtonBase, TextField, Box} from '@mui/material';
 import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
@@ -39,9 +41,9 @@ export default function NewComment(props) {
     return (
         <Box>   
             <Box>
-                {props.username} 
+                <Box id = "username">{props.username}</Box>
                 <Box id = "arrow_container">
-                    {props.postMessage}
+                    <Box id = "postMessage">{props.postMessage}</Box>
                     <Stack direction="column" spacing = {2}>
                         <IconButton id = "arrows" onClick = {increase}>
                             <KeyboardArrowUpIcon/> 
@@ -54,12 +56,18 @@ export default function NewComment(props) {
                 </Box>
             </Box>
             <Box id="box" display = "flex" justifyContent ="flex-start" alignItems="flex-start">
-                <Button onClick={toggleVisiblity}> Reply </Button>
-                <Box> 
-                    {isVisible && <NewPost onMessageSubmit={addReply}/>}
-                    {replies.map((reply) => {
-                        return <NewComment username={reply.username} postMessage={reply.message} />;
+                <Box id = "replybutton" onClick={toggleVisiblity}> 
+                    <AddCommentIcon/>
+                    Reply
+                </Box>
+                {/* <Button> Reply </Button> */}
+                <Box id="replycontainer"> 
+                    <Box>
+                        {isVisible && <NewPost onMessageSubmit={addReply}/>}
+                        {replies.map((reply) => {
+                        return  <NewComment username={reply.username} postMessage={reply.message} /> ;
                     })}
+                    </Box> 
                 </Box>
             </Box>
         </Box> 

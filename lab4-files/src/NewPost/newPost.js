@@ -1,10 +1,8 @@
 import './newPost.css'
 
-import {useState, useEffect} from 'react';
-
+import {useState} from 'react';
 import Button from '@mui/joy/Button'
-
-import { ButtonBase, TextField, Box} from '@mui/material';
+import { TextareaAutosize, TextField, Box } from '@mui/material';
 
 export default function NewPost(props) {
     const [username, setUser] = useState('');
@@ -26,9 +24,16 @@ export default function NewPost(props) {
 
     return (
         <Box>                 
-            <TextField id="UsernameBox" label="Name..." variant="outlined" value={username} onChange={handleUsernameChange} margin="normal" />
+            <TextField id="UsernameBox" label="Name..." variant="outlined" value={username} onChange={handleUsernameChange} />
             <Box>
-                <TextField id="MessageBox" label="Write a new post..." variant="outlined" value={postMessage} onChange={handleMessageChange} margin="normal" multiline />
+                <TextareaAutosize 
+                    id="MessageBox" 
+                    placeholder="Write a new post..." 
+                    minRows={5}
+                    value={postMessage} 
+                    onChange={handleMessageChange} 
+                    multiline
+                />
             </Box>
             <Box id="box" display = "flex" justifyContent ="flex-end" alignItems="flex-end">
                 <Button onClick={handleSubmit}>Submit</Button>
