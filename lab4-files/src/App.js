@@ -17,9 +17,7 @@ function App() {
 
   return (
     <div className = "postContainer">
-      <h1> 
-        <strong>New Post</strong>
-      </h1>
+      <strong>New Post</strong>
       <NewPost onMessageSubmit={addComment}/>
       <div className = "commentContainer">  
         {comments.map((comment) => {

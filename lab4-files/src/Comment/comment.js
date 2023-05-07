@@ -61,7 +61,7 @@ export default function Comment(props) {
                     Reply
                 </Box>
                 <Box id="replycontainer"> 
-                    <Box>
+                    <Box padding-left="10px">
                         {isVisible && <NewPost onMessageSubmit={addReply}/>}
                         {replies.map((reply) => {
                             return  <Comment username={reply.username} postMessage={reply.message} /> ;
