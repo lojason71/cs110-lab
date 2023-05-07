@@ -39,7 +39,7 @@ export default function Comment(props) {
     };
 
     return (
-        <Box>   
+        <Box id="commentContainer">   
             <Box>
                 <Box id = "username">{props.username}</Box>
                 <Box id = "arrow_container">

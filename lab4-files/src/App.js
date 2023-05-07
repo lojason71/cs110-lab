@@ -19,7 +19,7 @@ function App() {
     <div className = "postContainer">
       <strong>New Post</strong>
       <NewPost onMessageSubmit={addComment}/>
-      <div className = "commentContainer">  
+      <div className= "commentContainer">  
         {comments.map((comment) => {
           return <Comment username={comment.username} postMessage={comment.message} />;
         })}
