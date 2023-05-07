@@ -11,3 +11,8 @@
 #box{
     width: 550px;
 }
+
+#postContainer{
+    max-width: fit-content;
+    padding: 20px;
+}

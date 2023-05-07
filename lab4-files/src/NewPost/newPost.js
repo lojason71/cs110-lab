@@ -3,6 +3,7 @@ import './newPost.css'
 import {useState} from 'react';
 import Button from '@mui/joy/Button'
 import { TextareaAutosize, TextField, Box } from '@mui/material';
+import { shadows } from '@mui/system';
 
 export default function NewPost(props) {
     const [username, setUser] = useState('');
@@ -23,7 +24,7 @@ export default function NewPost(props) {
     }
 
     return (
-        <Box>                 
+        <Box id = "postContainer" sx={{ boxShadow: 3 }}>                 
             <TextField id="UsernameBox" label="Name..." variant="outlined" value={username} onChange={handleUsernameChange} />
             <Box>
                 <TextareaAutosize 
