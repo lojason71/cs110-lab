@@ -21,7 +21,7 @@ function App() {
       <NewPost onMessageSubmit={addComment}/>
       <div className= "commentContainer">  
         {comments.map((comment) => {
-          return <Comment username={comment.username} postMessage={comment.message} />;
+          return <Comment username={comment.username} postMessage={comment.message} depth={0} />;
         })}
       </div> 
     </div>

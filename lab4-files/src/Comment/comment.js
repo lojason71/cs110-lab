@@ -17,6 +17,7 @@ export default function Comment(props) {
     const [replies, setReply] = useState([])
     const [isVisible, setIsVisible] = useState(false)
     const [vote, setVote] = useState(0);
+    const {depth} = props;
 
     const toggleVisiblity = () => {
         setIsVisible(!isVisible);
@@ -56,15 +57,16 @@ export default function Comment(props) {
                 </Box>
             </Box>
             <Box id="box" display = "flex" justifyContent ="flex-start" alignItems="flex-start">
+                {(depth < 2) && (
                 <Box id = "replybutton" onClick={toggleVisiblity}> 
                     <AddCommentIcon/>
-                    Reply
-                </Box>
+                    Reply 
+                </Box>)}
                 <Box id="replycontainer"> 
                     <Box padding-left="10px">
                         {isVisible && <NewPost onMessageSubmit={addReply}/>}
                         {replies.map((reply) => {
-                            return  <Comment username={reply.username} postMessage={reply.message} /> ;
+                            return <Comment username={reply.username} postMessage={reply.message} depth={depth+1} />;
                         })}
                     </Box> 
                 </Box>
