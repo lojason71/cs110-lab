@@ -28,7 +28,7 @@
 
                                 <button type="button" class="btn btn-danger">Delete</button>
                                 <button type="button" class="btn btn-danger">
-                                    <data-target="#editBookModal" onClick="setEditModal($book.ibsn})">
+                                    <data-target="#editBookModal" onClick="setEditModal(${book.ibsn})">
                                     Edit
                                 </button>
                             </div>
