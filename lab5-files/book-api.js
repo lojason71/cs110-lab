@@ -40,4 +40,8 @@ app.get('/book/:isbn',(req,res) => {
     res.json(books);
 });
 
-app.listen(port,() => console.log('Hello world app listening on port 3000'));
+app.put('/book/:isbn',(req,res) => {
+    res.json(books);
+});
+
+app.listen(port,() => console.log(`Hello world app listening on port 3000`));
