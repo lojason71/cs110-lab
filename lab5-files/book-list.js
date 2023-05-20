@@ -63,8 +63,8 @@
             document.getElementById('title').value = title;
             document.getElementById('author').value = author;
             document.getElementById('publisher').value = publisher;
-            document.getElementById('date').value = publish_date;
-            document.getElementById('numpages').value = numOfPages;
+            document.getElementById('publish_date').value = publish_date;
+            document.getElementById('numOfPages').value = numOfPages;
 
             document.getElementById('editForm').action = "http://localhost:3000/book/${isbn}"
 

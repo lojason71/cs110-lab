@@ -36,4 +36,8 @@ app.post('/book/:isbn',(req,res) => {
     res.send("Book is edited");
 });
 
+app.get('/book/:isbn',(req,res) => {
+    res.json(books);
+});
+
 app.listen(port,() => console.log('Hello world app listening on port 3000'));
