@@ -16,7 +16,7 @@ app.post('/book',(req,res) => {
     //Output the book to the console for debugging
     console.log(book);
     books.push(book);
-    res.send('Book is added to the database');
+    // res.send('Book is added to the database');
 });
 
 app.get('/books',(req,res) => {
@@ -33,7 +33,7 @@ app.post('/book/:isbn',(req,res) => {
             books[i] = newBook;
         }
     }
-    res.send("Book is edited");
+    // res.send("Book is edited");
 });
 
 app.get('/book/:isbn',(req,res) => {
@@ -42,6 +42,17 @@ app.get('/book/:isbn',(req,res) => {
 
 app.put('/book/:isbn',(req,res) => {
     res.json(books);
+});
+
+app.delete('/book/:isbn', (req, res) => {
+    const isbn = req.params.isbn;
+    for (let i = 0; i < books.length; i++) {
+      if (books[i].isbn === isbn) {
+        books.splice(i, 1); // Remove the book from the array
+        // res.send("Book is deleted");
+      }
+    }  
+    // res.send("Book failed to delete.");
 });
 
 app.listen(port,() => console.log(`Hello world app listening on port 3000`));

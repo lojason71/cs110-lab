@@ -26,7 +26,7 @@
 
                                 <hr>
 
-                                <button type="button" class="btn btn-danger">Delete</button>
+                                <button type="button" class="btn btn-danger data-toggle="modal" onClick="deleteModal(${book.isbn})">Delete</button>
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                     data-target="#editBookModal" onClick="setEditModal(${book.isbn})">
                                     Edit
@@ -69,4 +69,8 @@
             document.getElementById('editForm').action = `http://localhost:3000/book/${isbn}`
 
         }
+    }
+
+    async function deleteModal(isbn) {
+        let response = await fetch(`http://localhost:3000/book/${isbn}`,{method: 'DELETE',});
     }
