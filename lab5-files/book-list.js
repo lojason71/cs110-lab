@@ -43,7 +43,7 @@
     loadBooks();
 
     async function setEditModal(isbn){
-        let response = await fetch('http://localhost:3000/book/${isbn}');
+        let response = await fetch(`http://localhost:3000/book/${isbn}`);
         console.log(response.status)//200
         console.log(response.statusText) //Ok
         if (response.status === 200){
@@ -66,7 +66,7 @@
             document.getElementById('publish_date').value = publish_date;
             document.getElementById('numOfPages').value = numOfPages;
 
-            document.getElementById('editForm').action = "http://localhost:3000/book/${isbn}"
+            document.getElementById('editForm').action = `http://localhost:3000/book/${isbn}`
 
         }
     }
