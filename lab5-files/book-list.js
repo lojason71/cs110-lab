@@ -42,7 +42,7 @@
 
     loadBooks();
 
-    async function setEditModal(){
+    async function setEditModal(isbn){
         let response = await fetch('http://localhost:3000/book/${isbn}');
         console.log(response.status)//200
         console.log(response.statusText) //Ok
