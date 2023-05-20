@@ -27,8 +27,8 @@
                                 <hr>
 
                                 <button type="button" class="btn btn-danger">Delete</button>
-                                <button type="button" class="btn btn-danger">
-                                    <data-target="#editBookModal" onClick="setEditModal(${book.ibsn})">
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#editBookModal" onClick="setEditModal(${book.ibsn})">
                                     Edit
                                 </button>
                             </div>
