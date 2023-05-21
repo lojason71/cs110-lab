@@ -33,19 +33,20 @@ app.post('/book/:isbn',(req,res) => {
             books[i] = newBook;
         }
     }
-    res.send("Book is edited");
+    res.send(`Book is edited<button onclick="history.back()"/> Go Back`);
 });
 
 app.get('/book/:isbn',(req,res) => {
-    const isbn = req.params.isbn;
-    const newBook = req.body;
+    // const isbn = req.params.isbn;
+    // const newBook = req.body;
 
-    for (let i = 0; i < books.length; i++) {
-        let book = books[i]
-        if (book.isbn === isbn){
-            res.json(book);
-        }
-    }
+    // for (let i = 0; i < books.length; i++) {
+    //     let book = books[i]
+    //     if (book.isbn === isbn){
+    //         res.json(book);
+    //     }
+    // }
+    res.json(books);
 });
 
 app.put('/book/:isbn',(req,res) => {
