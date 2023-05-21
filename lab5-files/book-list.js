@@ -20,8 +20,8 @@
                                 <div>Author:${book.author}</div>
                                 <div>Title:${book.title} </div>
                                 <div>Publisher:${book.publisher} </div>
-                                <div>Number Of Pages: ${book.numpages}</div>
-                                <div>Publish Date:${book.date}</div>
+                                <div>Number Of Pages: ${book.numOfPages}</div>
+                                <div>Publish Date:${book.publish_date}</div>
                                 <div>ISBN: ${book.isbn}</div>
 
                                 <hr>
