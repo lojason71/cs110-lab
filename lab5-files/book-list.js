@@ -26,7 +26,7 @@
 
                                 <hr>
 
-                                <button type="button" class="btn btn-danger data-toggle="modal" onClick="deleteModal(${book.isbn})">Delete</button>
+                                <button type="button" class="btn btn-danger data-toggle="modal" onClick="deleteModal(${book.isbn})" method="DELETE" >Delete</button>
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                     data-target="#editBookModal" onClick="setEditModal(${book.isbn})">
                                     Edit
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 `
-                document.getElementById('books').innerHTML =document.getElementById('books').innerHTML + x;
+                document.getElementById('books').innerHTML = document.getElementById('books').innerHTML + x;
             }
         }
     }
@@ -68,9 +68,14 @@
 
             document.getElementById('editForm').action = `http://localhost:3000/book/${isbn}`
 
+            document.getElementById('books').innerHTML = null;
+            loadBooks();
         }
     }
 
     async function deleteModal(isbn) {
         let response = await fetch(`http://localhost:3000/book/${isbn}`,{method: 'DELETE',});
+        document.getElementById('books').innerHTML = null;
+        loadBooks();
+        // let response = await fetch(`http://localhost:3000/book/${isbn}`);
     }
