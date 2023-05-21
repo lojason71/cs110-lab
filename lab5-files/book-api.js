@@ -49,7 +49,7 @@ app.delete('/book/:isbn', (req, res) => {
     for (let i = 0; i < books.length; i++) {
       if (books[i].isbn === isbn) {
         books.splice(i, 1); // Remove the book from the array
-        res.send("Book is deleted");
+        res.send("Book is deleted"); 
       }
     }  
     res.send("Book failed to delete.");
