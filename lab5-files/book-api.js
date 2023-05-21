@@ -37,16 +37,16 @@ app.post('/book/:isbn',(req,res) => {
 });
 
 app.get('/book/:isbn',(req,res) => {
-    // const isbn = req.params.isbn;
-    // const newBook = req.body;
+    const isbn = req.params.isbn;
+    const newBook = req.body;
 
-    // for (let i = 0; i < books.length; i++) {
-    //     let book = books[i]
-    //     if (book.isbn === isbn){
-    //         res.json(book);
-    //     }
-    // }
-    res.json(books);
+    for (let i = 0; i < books.length; i++) {
+        let book = books[i]
+        if (book.isbn === isbn){
+            res.json(book);
+        }
+    }
+    // res.json(books);
 });
 
 app.put('/book/:isbn',(req,res) => {
